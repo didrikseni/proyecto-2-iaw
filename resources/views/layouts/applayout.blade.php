@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -32,21 +32,21 @@
 
 <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm fixed-top">
+    <nav class="navbar navbar-expand-sm fixed-top nav">
         <div class="nabvar-item nav-pills nabvar">
             <a href="{{ url('/') }}">
                 <h1>Portal UNS</h1>
             </a>
         </div>
 
-        <div class="navbar-items nav-pills navbar">
+        <div class="nav-pills navbar">
             <button>
                 Nuevo articulo
             </button>
         </div>
 
-        <div class="dropdown ml-auto">
-            <a class="btn dropdown-toggle custom-text-navbar" data-toggle="dropdown"
+        <div class="dropdown ml-3">
+            <a class="btn dropdown-toggle" data-toggle="dropdown"
                 onmouseover="animateCSS(this, 'bounceIn')">
                 Temas
             </a>
@@ -56,27 +56,29 @@
                 <a class="dropdown-item" onclick="setTheme('theme-pastel')">Pastel</a>
                 <a class="dropdown-item" onclick="setTheme('theme-warm')">Cálido</a>
             </div>
-            <div>
-                @if (Route::has('login'))
-                <div class="ml-auto links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        </div>
+        <div>
+            @if (Route::has('login'))
+            <div class="ml-auto links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </>
-                @endif
-            </div>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            </>
+            @endif
+        </div>
     </nav>
     <!-- Nav Bar -->
 
+    @yield('content')
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4 sticky-footer">
+    <footer class="page-footer pt-4">
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
             <!-- Grid row -->
