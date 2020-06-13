@@ -1,0 +1,27 @@
+.theme-light {
+    --color-primary: #ffffff;
+    --color-accent: #457b9d;
+    --font-color: #000000;
+    --font-navbar: #ffffff
+}
+
+.theme-dark {
+    --color-primary: #0C1821;
+    --color-accent: #324A5F;
+    --font-color: #ffffff;
+    --font-navbar: #ffffff
+}
+
+.theme-pastel {
+    --color-primary: #ffe5d9;
+    --color-accent: #FFB4A2;
+    --font-color: #6D6875;
+    --font-navbar: #6D6875;
+}
+
+.theme-warm {
+    --color-primary: #FFE6A7;
+    --color-accent: #780116;
+    --font-color: #463F3A;
+    --font-navbar: #ffffff;
+}

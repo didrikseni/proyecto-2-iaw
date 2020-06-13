@@ -18,7 +18,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/themes.css') }}" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -35,50 +38,67 @@
     <nav class="navbar navbar-expand-sm fixed-top nav">
         <div class="nabvar-item nav-pills nabvar">
             <a href="{{ url('/') }}">
-                <h1>Portal UNS</h1>
+                <p>Portal UNS</p>
             </a>
         </div>
 
-        <div class="nav-pills navbar">
-            <button>
-                Nuevo articulo
+        <div class="nav-pills active ml-3 mr-3">
+            <button class="btn btn-custom" type="button">
+                <i class="fas fa-cloud-upload-alt"> Articulo</i>
             </button>
         </div>
 
-        <div class="dropdown ml-3">
-            <a class="btn dropdown-toggle" data-toggle="dropdown"
-                onmouseover="animateCSS(this, 'bounceIn')">
-                Temas
+        <div class="ml-auto">
+            <ul class="navbar-nav nav-pills nav-justified">
+                @if (Route::has('login'))
+                <div class="ml-auto links">
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link custom-text-navbar faster" href="{{ url('/home') }}"
+                            onmouseover="animateCSS(this, 'bounceIn')">
+                            Home
+                        </a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link custom-text-navbar faster" href="{{ url('/login') }}"
+                            onmouseover="animateCSS(this, 'bounceIn')">
+                            Login
+                        </a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link custom-text-navbar faster" href="{{ route('register') }}"
+                            onmouseover="animateCSS(this, 'bounceIn')">
+                            Register
+                        </a>
+                    </li>
+                    @endif
+                    @endauth
+                    @endif
+                </div>
+            </ul>
+        </div>
+
+        <div class="dropdown ml-auto">
+            <a class="fas fa-sliders-h btn dropdown-toggle custom-text-navbar" data-toggle="dropdown"
+                onmousedown="animateCSS(this, 'bounceIn')">
             </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu dropdown-menu-sm-right">
                 <a class="dropdown-item" onclick="setTheme('theme-light')">Claro</a>
                 <a class="dropdown-item" onclick="setTheme('theme-dark')">Oscuro</a>
                 <a class="dropdown-item" onclick="setTheme('theme-pastel')">Pastel</a>
                 <a class="dropdown-item" onclick="setTheme('theme-warm')">Cálido</a>
             </div>
         </div>
-        <div>
-            @if (Route::has('login'))
-            <div class="ml-auto links">
-                @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                @endauth
-            </>
-            @endif
-        </div>
     </nav>
     <!-- Nav Bar -->
 
     @yield('content')
 
     <!-- Footer -->
-    <footer class="page-footer pt-4">
+    <footer class="page-footer font-small blue pt-4 sticky-footer">
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
             <!-- Grid row -->
@@ -133,6 +153,10 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+
+
+    <script src="js/themeSetting.js"></script>
+    <script src="js/animations.js"></script>
 
 </body>
 
