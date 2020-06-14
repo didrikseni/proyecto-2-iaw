@@ -1,4 +1,4 @@
-@extends('layouts/applayout')
+@extends('layouts/app')
 
 @section('content')
     <!-- Page Content -->
@@ -13,6 +13,6 @@
                 </table>
             </div>
         </div>
-    </>
+    </div>
     <!-- Page Content -->
 @endsection

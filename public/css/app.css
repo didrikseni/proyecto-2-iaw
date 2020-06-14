@@ -29,7 +29,8 @@
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
     --font-family-sans-serif: "Nunito", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
 }
 
 *,
@@ -38,7 +39,7 @@
     box-sizing: border-box;
 }
 
-input[type=text] {
+input[type="text"] {
     width: 100%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -47,7 +48,7 @@ input[type=text] {
 
 body {
     padding-top: 70px;
-    font-family: 'Nunito', sans-serif !important;
+    font-family: "Nunito", sans-serif !important;
     padding: 0;
     margin: 0;
     background: var(--colorPrimary) !important;
@@ -115,8 +116,12 @@ hr {
     color: var(--color-accent) !important;
 }
 
-
 .button-custom {
     color: transparent !important;
     background-color: transparent !important;
+}
+
+.card {
+    background-color: var(--color-primary) !important;
+    color: var(--font-color);
 }
