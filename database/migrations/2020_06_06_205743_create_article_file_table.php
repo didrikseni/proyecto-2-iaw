@@ -13,11 +13,11 @@ class CreateArticleFileTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_file', function (Blueprint $table) {
+        Schema::create('article_files', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->binary('content');
-            $table->foreignId('article_id')->references('id')->on('article');
+            $table->foreignId('article_id')->references('id')->on('articles');
         });
     }
 

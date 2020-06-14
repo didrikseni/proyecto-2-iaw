@@ -42,11 +42,15 @@
             </a>
         </div>
 
+        @if (Route::has('login'))
+        @auth
         <div class="nav-pills active ml-3 mr-3">
-            <button class="btn btn-custom" type="button">
+            <button class="btn buttom-custom" type="button">
                 <i class="fas fa-cloud-upload-alt"> Articulo</i>
             </button>
         </div>
+        @endauth
+        @endif
 
         <div class="ml-auto">
             <ul class="navbar-nav nav-pills nav-justified">
@@ -57,6 +61,12 @@
                         <a class="nav-link custom-text-navbar faster" href="{{ url('/home') }}"
                             onmouseover="animateCSS(this, 'bounceIn')">
                             Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-text-navbar faster" href="{{ url('/') }}"
+                            onmouseover="animateCSS(this, 'bounceIn')" onmousedown="{{ Auth::logout() }}">
+                            Logout
                         </a>
                     </li>
                     @else
@@ -80,7 +90,7 @@
             </ul>
         </div>
 
-        <div class="dropdown ml-auto">
+        <div class="dropdown">
             <a class="fas fa-sliders-h btn dropdown-toggle custom-text-navbar" data-toggle="dropdown"
                 onmousedown="animateCSS(this, 'bounceIn')">
             </a>
@@ -91,7 +101,6 @@
                 <a class="dropdown-item" onclick="setTheme('theme-warm')">Cálido</a>
             </div>
         </div>
-
     </nav>
     <!-- Nav Bar -->
 

@@ -17,7 +17,7 @@ class CreateSavedArticlesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('article_id')->references('id')->on('article');
+            $table->foreignId('article_id')->references('id')->on('articles');
 
         });
     }
