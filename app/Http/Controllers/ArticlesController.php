@@ -12,8 +12,38 @@ class ArticlesController extends Controller
         return view('articles.index', ['articles' => $articles]);
     }
 
-    public function show($id){
-        $article = Article::find($id);
+    public function show(Article $article){
         return view('articles.show', ['article' => $article]);
+    }
+
+    public function create(){
+        return view('articles.create');
+    }
+
+    public function store() {
+        Article::create($this->validateArticle());
+        return redirect(route('articles.index'));
+    }
+
+    public function edit(Article $article) {
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Article $article) {
+        request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'description' => 'required',
+        ]);
+
+        $article->title = request('title');
+        $article->content = request('content');
+        $article->description = request('description');
+        $article->save();
+        return redirect('/articles' . $article->id);
+    }
+
+    public function destroy() {
+
     }
 }

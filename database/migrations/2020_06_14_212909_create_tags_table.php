@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImageArticleTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,19 @@ class CreateImageArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_images', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
-            $table->binary('image');
+        });
+
+
+        Schema::create('article_tag', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->foreignId('tag_id')->references('id')->on('tags')->cascadeOnDelete();
+            $table->timestamps();
+            $table->unique(['article_id', 'tag_id']);
         });
     }
 
@@ -28,6 +36,6 @@ class CreateImageArticleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_image');
+        Schema::dropIfExists('tags');
     }
 }

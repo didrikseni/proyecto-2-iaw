@@ -16,8 +16,8 @@ class CreateFollowersTable extends Migration
         Schema::create('followers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('follower')->references('id')->on('users');
-            $table->foreignId('followee')->references('id')->on('users');
+            $table->foreignId('follower')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('followee')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

@@ -16,8 +16,8 @@ class CreateSavedArticlesTable extends Migration
         Schema::create('saved_articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('article_id')->references('id')->on('articles');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
 
         });
     }

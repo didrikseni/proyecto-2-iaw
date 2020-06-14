@@ -17,7 +17,7 @@ class CreateArticleFileTable extends Migration
             $table->id();
             $table->timestamps();
             $table->binary('content');
-            $table->foreignId('article_id')->references('id')->on('articles');
+            $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
         });
     }
 

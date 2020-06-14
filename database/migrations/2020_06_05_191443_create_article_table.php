@@ -16,12 +16,12 @@ class CreateArticleTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('title', 150);
             $table->date('publication_date');
             $table->float('score', 1, 1);
             $table->string('description',500);
             $table->text('content');
-            $table->foreignId('user_id')->references('id')->on('users');
         });
     }
 
