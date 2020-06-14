@@ -12,12 +12,19 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        
+
                         <div class="col-sm-3">
                             <h1>profile</h1>
                         </div>
                         <div class="col-sm-8">
-                            <table id="posts-table"></table>
+                            <ul id="posts-lists">
+                                @foreach($articles as $article)
+                                    <li>
+                                        <h3>{{ $article->title }}</h3>
+                                        <p>{{ $article->description }}</p>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
 
                     </div>
