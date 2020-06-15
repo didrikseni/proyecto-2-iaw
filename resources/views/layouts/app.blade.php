@@ -1,17 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Portal UNS') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -135,17 +132,17 @@
                         <div class="btn">
                             <i class="fab fa-facebook-f fa-lg" onclick="
                         window.open(
-                          'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-                          'facebook-share-dialog', 
-                          'width=600,height=400'); 
+                          'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                          'facebook-share-dialog',
+                          'width=600,height=400');
                         return false;"></i>
                         </div>
                         <div class="btn">
                             <i class="fab fa-twitter p-3 fa-lg" onclick="
                         window.open(
-                          'https://twitter.com/intent/tweet?url=' +encodeURIComponent(location.href),                          
-                          'twitter-share-dialog', 
-                          'width=600,height=400'); 
+                          'https://twitter.com/intent/tweet?url=' +encodeURIComponent(location.href),
+                          'twitter-share-dialog',
+                          'width=600,height=400');
                         return false;"></i>
                         </div>
                     </ul>
@@ -164,8 +161,8 @@
     <!-- Footer -->
 
 
-    <script src="js/themeSetting.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="{{ asset('js/themeSetting.js') }}"></script>
+    <script src="{{ asset('js/animations.js') }}"></script>
 
 </body>
 

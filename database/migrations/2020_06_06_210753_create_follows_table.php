@@ -13,7 +13,7 @@ class CreateFollowersTable extends Migration
      */
     public function up()
     {
-        Schema::create('followers', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('follower')->references('id')->on('users')->cascadeOnDelete();
@@ -28,6 +28,6 @@ class CreateFollowersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('follows');
     }
 }

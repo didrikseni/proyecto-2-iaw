@@ -23,7 +23,6 @@
                         <i class="far fa-star"></i>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

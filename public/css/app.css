@@ -29,7 +29,7 @@
     --breakpoint-xl: 1200px;
     --font-family-sans-serif: "Nunito", sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    "Liberation Mono", "Courier New", monospace;
 }
 
 *,
@@ -46,11 +46,10 @@ input[type="text"] {
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 80px;
     font-family: "Nunito", sans-serif !important;
-    padding: 0;
     margin: 0;
-    background: var(--colorPrimary) !important;
+    background: var(--color-primary) !important;
     background-color: var(--color-primary) !important;
 }
 
@@ -83,7 +82,6 @@ h1 {
     font-weight: 800;
     margin: 0;
     letter-spacing: -1px;
-    color: inherit;
     font-size: 40px;
     color: var(--font-color);
 }
@@ -93,7 +91,6 @@ h2 {
     font-size: 30px;
     margin: 0;
     font-weight: 300;
-    color: inherit;
     padding: 50px;
     color: var(--font-color);
 }
@@ -111,11 +108,6 @@ hr {
     padding: 0;
 }
 
-.button-custom {
-    color: transparent;
-    background-color: transparent;
-}
-
 .fas .fa {
     color: var(--color-accent) !important;
 }
@@ -124,3 +116,20 @@ hr {
     background-color: var(--color-primary) !important;
     color: var(--font-color);
 }
+
+.form-group {
+    color: var(--font-color);
+}
+
+.custom-button {
+    background-color: var(--color-accent);
+
+}
+.custom-button:hover {
+
+}
+.custom-button:active {
+    position:relative;
+    top:1px;
+}
+
