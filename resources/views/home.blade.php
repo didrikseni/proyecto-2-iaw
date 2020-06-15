@@ -18,12 +18,6 @@
                         </div>
                         <div class="col-sm-8">
                             <ul id="posts-lists">
-                                @foreach($articles as $article)
-                                    <li>
-                                        <h3>{{ $article->title }}</h3>
-                                        <p>{{ $article->description }}</p>
-                                    </li>
-                                @endforeach
                             </ul>
                         </div>
 

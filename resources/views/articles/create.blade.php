@@ -5,7 +5,8 @@
         <div class="container">
             <h1 class="">Nuevo Artículo</h1>
 
-            <form>
+            <form method="post" action="/articles">
+                @csrf
                 <div class="form-group">
                     <label class="label" for="title">Título</label>
                     <div>
@@ -40,10 +41,6 @@
                 <div class="form-group row justify-content-end">
                     <div class="col-auto">
                         <button class="btn btn-secondary">Publicar</button>
-                    </div>
-
-                    <div class="col-auto">
-                        <button class="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
             </form>

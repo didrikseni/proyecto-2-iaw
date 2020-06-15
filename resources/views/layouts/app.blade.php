@@ -40,13 +40,13 @@
         </div>
 
         @if (Route::has('login'))
-        @auth
-        <div class="nav-pills active ml-3 mr-3">
-            <button class="btn buttom-custom" type="button">
-                <i class="fas fa-cloud-upload-alt"> Articulo</i>
-            </button>
-        </div>
-        @endauth
+            @auth
+            <div class="nav-pills active ml-3 mr-3">
+                <button class="btn buttom-custom" type="button">
+                    <i class="fas fa-cloud-upload-alt"> Articulo</i>
+                </button>
+            </div>
+            @endauth
         @endif
 
         <div class="ml-auto">
@@ -62,7 +62,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link custom-text-navbar faster" href="{{ url('/') }}"
-                            onmouseover="animateCSS(this, 'bounceIn')" onmousedown="{{ Auth::logout() }}">
+                            onmouseover="animateCSS(this, 'bounceIn')" onmousedown='{{ request('/logout') }}'>
                             Logout
                         </a>
                     </li>
