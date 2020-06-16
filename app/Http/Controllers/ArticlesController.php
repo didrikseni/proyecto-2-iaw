@@ -29,22 +29,18 @@ class ArticlesController extends Controller {
         return redirect(route('articles.index'));
     }
 
-    public function edit(Article $article) {
+    public function edit($id) {
+        $article = Article::find($id);
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Article $article) {
-        request()->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'description' => 'required',
-        ]);
-
+    public function update($id) {
+        $article = Article::find($id);
         $article->title = request('title');
         $article->content = request('content');
         $article->description = request('description');
         $article->save();
-        return redirect('/articles' . $article->id);
+        return redirect('/articles/' . $article->id);
     }
 
     public function destroy() {

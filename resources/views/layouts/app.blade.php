@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-
+    @yield('head')
 </head>
 
 <body class="d-flex flex-column">
@@ -41,11 +41,10 @@
 
     @if (Route::has('login'))
         @auth
-            <div class="nav-pills active ml-3 mr-3">
-                <button class="btn buttom-custom" type="button">
-                    <i class="fas fa-cloud-upload-alt"> Articulo</i>
-                </button>
-            </div>
+            <a class="nav-link custom-text-navbar faster" href="{{ url('/articles/create') }}"
+               onmouseover="animateCSS(this, 'fadeIn')">
+                Artículo
+            </a>
         @endauth
     @endif
 
@@ -56,7 +55,7 @@
                     @auth
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ url('/home') }}"
-                               onmouseover="animateCSS(this, 'bounceIn')">
+                               onmouseover="animateCSS(this, 'fadeIn')">
                                 Home
                             </a>
                         </li>
@@ -64,21 +63,21 @@
                             <form method="post" action="/logout" id="logout-form">
                                 @csrf
                                 <a class="nav-link custom-text-navbar faster"
-                                   onmouseover="animateCSS(this, 'bounceIn')" href="#"
+                                   onmouseover="animateCSS(this, 'fadeIn')" href="#"
                                    onclick="document.getElementById('logout-form').submit();"> LOGOUT </a>
                             </form>
                         </li>
                     @else
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ url('/login') }}"
-                               onmouseover="animateCSS(this, 'bounceIn')">
+                               onmouseover="animateCSS(this, 'fadeIn')">
                                 Login
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ route('register') }}"
-                               onmouseover="animateCSS(this, 'bounceIn')">
+                               onmouseover="animateCSS(this, 'fadeIn')">
                                 Register
                             </a>
                         </li>
@@ -164,7 +163,7 @@
 
 <script src="{{ asset('js/themeSetting.js') }}"></script>
 <script src="{{ asset('js/animations.js') }}"></script>
-
+@yield('scripts')
 </body>
 
 </html>
