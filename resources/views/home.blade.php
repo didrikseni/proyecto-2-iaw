@@ -2,27 +2,32 @@
 
 @section('content')
     <div class="container page-content">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card text-center">
-                    <div class="card-header">Dashboard</div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        <div class="col-sm-3">
-                            <h1>profile</h1>
-                        </div>
-                        <div class="col-sm-8">
-                            <ul id="posts-lists">
-                            </ul>
-                        </div>
-
-                    </div>
+        <div class="row">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
                 </div>
+            @endif
+            <div class="col-sm-5">
+                <h2 class="text-justify">Perfil</h2>
+                <div class="row">
+                    <i class="fas fa-user fa-5x col-2"></i>
+                    <p class="text-center col-3">{{ $user->name }}</p>
+                </div>
+                <br>
+                <p>{{ $user->email }}</p>
+            </div>
+            <div class="col-sm-7 text-justify card">
+                <h2 class="text-justify">Ultimos posts</h2>
+                <hr>
+                <ul class="list-unstyled ml-2">
+                    @foreach($articles as $article)
+                        <li>
+                            <a href="/articles/{{ $article->id }}"><h4>{{ $article->title }}</h4></a>
+                            <p>{{ $article->description }}</p>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
