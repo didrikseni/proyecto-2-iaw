@@ -109,8 +109,12 @@ hr {
     padding: 0;
 }
 
-.fas .fa {
+.fas, .fa {
     color: var(--color-accent) !important;
+}
+
+.fab {
+    color: var(--font-navbar);
 }
 
 .card {

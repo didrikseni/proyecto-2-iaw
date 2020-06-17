@@ -1,15 +1,15 @@
 .theme-light {
-    --color-primary: #ffffff;
-    --color-accent: #457b9d;
-    --font-color: #000000;
-    --font-navbar: #ffffff
+    --color-primary: #eeeeee;
+    --color-accent: #3f72af;
+    --font-color: #364f6b;
+    --font-navbar: #eeeeee
 }
 
 .theme-dark {
-    --color-primary: #0C1821;
-    --color-accent: #324A5F;
-    --font-color: #ffffff;
-    --font-navbar: #ffffff
+    --color-primary: #323232;
+    --color-accent: #212121;
+    --font-color: #ececec;
+    --font-navbar: #3f72af;
 }
 
 .theme-pastel {
