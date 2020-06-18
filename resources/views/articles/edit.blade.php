@@ -1,36 +1,37 @@
-@extends('layouts.app')
+@extends('layouts.edittext')
 
 @section('content')
     @if(auth()->id() == $article->id)
         <div class="page-content">
             <div class="container">
                 <h1 class="">Editor de artículo</h1>
-
                 <form method="POST" action="/articles/{{ $article->id }}">
                     @csrf
                     @method('PUT')
-
                     <div class="form-group">
                         <label class="label" for="title">Editar título</label>
                         <div>
-                            <input class="input-group" type="text" name="title" id="title"
-                                   value="{{ $article->title }}">
+                            <input class="input-group @error('title') alert-danger @enderror" type="text" name="title" id="title" value="{{ $article->title }}">
+                            @error('title')
+                            <p class="badge badge-danger">{{ $errors->first('title') }}</p>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="label" for="description">Editar descripción</label>
                         <div>
-                            <input class="input-group" type="text" name="description" id="description"
-                                   value="{{ $article->description }}">
+                            <input class="input-group @error('description') alert-danger @enderror" type="text" name="description" id="description" value="{{ $article->description }}">
+                            @error('description')
+                            <p class="badge badge-danger">{{ $errors->first('title') }}</p>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="label" for="content">Editar contenido</label>
                         <div>
-                            <textarea class="form-control" type="text" name="content" id="content"
-                                      rows="8">{{ $article->content }}</textarea>
+                            <textarea class="form-control" type="text" name="content" id="content" rows="25">{{ $article->content  }}</textarea>
                         </div>
                     </div>
 
