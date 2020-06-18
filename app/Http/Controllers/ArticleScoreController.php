@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleScoreController extends Controller
 {
-    public function vote($id) {
+    public function vote(Article $article) {
         $score = new ArticleScore();
-        $article = Article::find($id);
         $score->vote = request('form-value');
-        $score->article_id = $id;
+        $score->article_id = $article->id;
         $score->user_id = Auth::id();
         $score->save();
         return redirect('/articles/'. $article->id);

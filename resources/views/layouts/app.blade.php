@@ -34,7 +34,7 @@
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm fixed-top nav">
     <div class="nabvar-item nav-pills nabvar">
-        <a href="{{ url('/') }}">
+        <a href="{{ url('/') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
             <p>Portal UNS</p>
         </a>
     </div>

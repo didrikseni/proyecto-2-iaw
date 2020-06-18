@@ -1,7 +1,7 @@
 function stars(n) {
     for (let i = 1; i < 6; i++) {
         let item = document.getElementById("star-" + i).firstChild;
-        if (i < n) {
+        if (i < n+1) {
             item.classList.remove('far');
             item.classList.add('fas');
         } else {
