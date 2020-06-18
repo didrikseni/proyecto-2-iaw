@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller {
 
@@ -24,25 +26,33 @@ class ArticlesController extends Controller {
     }
 
     public function store() {
-        Article::create($this->validateArticle());
-        return redirect(route('articles.index'));
+        $article = array_merge($this->validateArticle(), ["user_id" => Auth::id()]);
+        Article::create($article);
+        return redirect('/home');
     }
 
-    public function edit($id) {
-        $article = Article::find($id);
+    public function edit(Article $article) {
         return view('articles.edit', compact('article'));
     }
 
-    public function update($id) {
-        $article = Article::find($id);
-        $article->title = request('title');
-        $article->content = request('content');
-        $article->description = request('description');
-        $article->save();
+    public function update(Article $article) {
+        if ($article->id == Auth::id())
+            $article->update(array_merge($this->validateArticle(), ["user_id" => Auth::id()]));
         return redirect('/articles/' . $article->id);
     }
 
     public function destroy() {
 
+    }
+
+    /**
+     * @return array
+     */
+    public function validateArticle(): array {
+         return request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:10', 'max:500'],
+            'content' => 'required',
+        ]);
     }
 }

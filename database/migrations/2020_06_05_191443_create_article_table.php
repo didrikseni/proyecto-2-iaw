@@ -18,7 +18,6 @@ class CreateArticleTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('title', 150);
-            $table->date('publication_date');
             $table->string('description',500);
             $table->text('content');
         });

@@ -12,7 +12,11 @@
                     <br> <br> <br> <br> <br>
                 </div>
                 <div id="score" class="row custom-text">
-
+                    @if(auth()->id() == $article->id)
+                        <form method="GET" action="/articles/{{ $article->id }}/edit">
+                            <button class="btn btn-secondary">Editar articulo</button>
+                        </form>
+                    @endif
                     <div class="col-auto ml-auto">
                         <p>Votar</p>
                     </div>

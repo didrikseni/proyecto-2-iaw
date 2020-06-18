@@ -12,10 +12,10 @@
                 <h2 class="text-justify">Perfil</h2>
                 <div class="row">
                     <i class="fas fa-user fa-5x col-2"></i>
-                    <p class="text-center col-3">{{ $user->name }}</p>
+                    <p class="text-center col-3 custom-text">{{ $user->name }}</p>
                 </div>
                 <br>
-                <p>{{ $user->email }}</p>
+                <p class="custom-text">{{ $user->email }}</p>
             </div>
             <div class="col-sm-7 text-justify card">
                 <h2 class="text-justify">Ultimos posts</h2>

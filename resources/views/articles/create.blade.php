@@ -1,30 +1,48 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src='https://cdn.tiny.cloud/1/3yn19ck0mgv6qus3qkej8vrfp9x3q45am4ikvprcke9nzs7q/tinymce/5/tinymce.min.js'
+            referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
+    </script>
+@endsection
+
 @section('content')
     <div class="page-content">
         <div class="container">
             <h1 class="">Nuevo Artículo</h1>
-
-            <form method="post" action="/articles">
+            <form method="POST" action="/articles">
                 @csrf
                 <div class="form-group">
                     <label class="label" for="title">Título</label>
                     <div>
-                        <input class="input-group" type="text" name="title" id="title">
+                        <input class="input-group @error('title') alert-danger @enderror" type="text" name="title" id="title" value="{{ old('title') }}">
+                        @error('title')
+                            <p class="badge badge-danger">{{ $errors->first('title') }}</p>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="label" for="description">Descripción</label>
                     <div>
-                        <input class="input-group" type="text" name="description" id="description">
+                        <input class="input-group @error('description') alert-danger @enderror" type="text" name="description" id="description" value="{{ old('description') }}">
+                        @error('description')
+                            <p class="badge badge-danger">{{ $errors->first('title') }}</p>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="label" for="content">Contenido</label>
-                    <div >
-                        <textarea class="form-control" type="text" name="content" id="content" rows="8"></textarea>
+                    <div>
+                        <textarea class="form-control" type="text" name="content" id="content" rows="20">{{ old('content') }}</textarea>
                     </div>
                 </div>
 

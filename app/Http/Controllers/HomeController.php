@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -26,7 +25,7 @@ class HomeController extends Controller
     public function index() {
         return view('home', [
             'user' => Auth::user(),
-            'articles' => Article::orderBy('publication_date')->paginate(6)
+            'articles' => Article::orderBy('updated_at', 'desc')->paginate(6)
         ]);
     }
 

@@ -43,7 +43,7 @@
         @auth
             <a class="nav-link custom-text-navbar faster" href="{{ url('/articles/create') }}"
                onmouseover="animateCSS(this, 'fadeIn')">
-                Artículo
+                <i class="fas fa-cloud-upload-alt custom-text-navbar"></i>  Artículo
             </a>
         @endauth
     @endif
