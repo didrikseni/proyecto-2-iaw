@@ -24,3 +24,5 @@ Route::get('/articles/{article}', 'ArticlesController@show');
 Route::get('/articles/{article}/edit', 'ArticlesController@edit');
 Route::put('/articles/{article}', 'ArticlesController@update');
 Route::post('/articles/{article}/vote', 'ArticleScoreController@vote');
+Route::get('/profile/{user}', 'UserController@show');
+Route::get('/profile', 'UserController@index');
