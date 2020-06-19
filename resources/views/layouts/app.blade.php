@@ -34,7 +34,7 @@
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm fixed-top nav">
     <div class="nabvar-item nav-pills nabvar">
-        <a href="{{ url('/') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
+        <a href="{{ url('/home') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
             <p>Portal UNS</p>
         </a>
     </div>
@@ -111,19 +111,14 @@
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0">
-                <h5 class="text-uppercase custom-text-navbar">Primer Proyecto de Ingeniería de Aplicaciones Web
+                <h5 class="text-uppercase custom-text-navbar">Segundo Proyecto de Ingeniería de Aplicaciones Web
                 </h5>
                 <p class="custom-text-navbar">Universidad Nacional del Sur - Primer cuatrimestre 2020</p>
             </div>
             <div class="col-md-4 mb-md-0">
                 <h5 class="text-uppercase custom-text-navbar">Links de interes</h5>
                 <ul class="list-unstyled">
-                    <li><a class="custom-text-navbar" href="https://es.wikipedia.org/wiki/Medici%C3%B3n">Historia de
-                            la
-                            Medición</a></li>
-                    <li><a class="custom-text-navbar"
-                           href="https://es.wikipedia.org/wiki/Sistema_de_unidades">Sistema
-                            de Unidades</a></li>
+
                 </ul>
             </div>
             <div class="col-md-auto mb-md-0">

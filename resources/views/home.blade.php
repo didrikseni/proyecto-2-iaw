@@ -18,7 +18,7 @@
                 <p class="custom-text">{{ $user->email }}</p>
             </div>
             <div class="col-sm-7 text-justify card mb-4">
-                <h2 class="text-justify">Ultimos posts</h2>
+                <h2>Ultimos posts</h2>
                 <hr>
                 <ul class="list-unstyled ml-2">
                     @foreach($articles as $article)

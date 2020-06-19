@@ -143,3 +143,5 @@ hr {
 .transparent-btn:active {
     border: none;
 }
+
+.centered-and-cropped { object-fit: cover }

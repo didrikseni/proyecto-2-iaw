@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.app')
 
 @section('content')
     <div class="container page-content">
@@ -22,7 +22,7 @@
                 <p class="custom-text text-center">{{ $user->email }}</p>
             </div>
             <div class="col-sm-7 text-justify card">
-                <h2>Ultimos posts</h2>
+                <h2>Publicaciónes</h2>
                 <hr>
                 <ul class="list-unstyled ml-2">
                     @foreach($articles as $article)

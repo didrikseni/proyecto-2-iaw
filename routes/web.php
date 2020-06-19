@@ -26,3 +26,5 @@ Route::put('/articles/{article}', 'ArticlesController@update');
 Route::post('/articles/{article}/vote', 'ArticleScoreController@vote');
 Route::get('/profile/{user}', 'UserController@show');
 Route::get('/profile', 'UserController@index');
+Route::post('/profile', 'Usercontroller@store');
+Route::post('/profile/password',  'UserController@changePassword');
