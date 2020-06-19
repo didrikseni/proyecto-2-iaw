@@ -32,7 +32,7 @@
 
 <body class="d-flex flex-column">
 <!-- Nav Bar -->
-<nav class="navbar navbar-expand-sm fixed-top nav">
+<nav class="navbar navbar-expand-sm nav fixed-top">
     <div class="nabvar-item nav-pills nabvar">
         <a href="{{ url('/home') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
             <p>Portal UNS</p>
@@ -86,7 +86,6 @@
                 </div>
         </ul>
     </div>
-
     <div class="dropdown">
         <a class="fas fa-sliders-h btn dropdown-toggle custom-text-navbar" data-toggle="dropdown"
            onmousedown="animateCSS(this, 'bounceIn')">
@@ -104,25 +103,24 @@
 @yield('content')
 
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4 sticky-footer">
+<footer class="page-footer pt-4 sticky-footer">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
         <!-- Grid row -->
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0">
-                <h5 class="text-uppercase custom-text-navbar">Segundo Proyecto de Ingeniería de Aplicaciones Web
-                </h5>
-                <p class="custom-text-navbar">Universidad Nacional del Sur - Primer cuatrimestre 2020</p>
+                <h5 class="custom-text-navbar">Ayudando a aprender</h5>
             </div>
             <div class="col-md-4 mb-md-0">
-                <h5 class="text-uppercase custom-text-navbar">Links de interes</h5>
+                <h5 class="custom-text-navbar">Preguntas frecuentes</h5>
                 <ul class="list-unstyled">
-
                 </ul>
+                <h5 class="custom-text-navbar">Términos y condiciones</h5>
             </div>
+
             <div class="col-md-auto mb-md-0">
-                <h5 class="text-uppercase custom-text-navbar">Compartir</h5>
+                <h5 class="custom-text-navbar">Compartir</h5>
                 <ul class="list-unstyled">
                     <div class="btn">
                         <i class="fab fa-facebook-f fa-lg" onclick="
@@ -148,17 +146,25 @@
     </div>
     <!-- Footer Links -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center pb-2">
-        <a class="custom-text-navbar" href="https://github.com/didrikseni/">Información del Autor</a>
+    <div class="container-fluid footer-copyright text-center pb-2">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <p class="custom-text-navbar">Acerca del autor</p>
+            </div>
+            <div class="col-auto">
+                <a href="https://github.com/didrikseni"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="col-auto">
+                <a href="https://www.linkedin.com/in/iandidriksen/"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
     </div>
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
 
-
 <script src="{{ asset('js/themeSetting.js') }}"></script>
 <script src="{{ asset('js/animations.js') }}"></script>
 @yield('scripts')
 </body>
-
 </html>

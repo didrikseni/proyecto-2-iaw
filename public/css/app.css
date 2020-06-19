@@ -38,14 +38,6 @@
     box-sizing: border-box;
 }
 
-textarea[type='text'],
-input[type="text"] {
-    width: 100%;
-    padding: 5px 5px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
 body {
     padding-top: 80px;
     font-family: "Nunito", sans-serif !important;
