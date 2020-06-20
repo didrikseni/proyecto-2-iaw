@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\User;
 use Illuminate\Support\Facades\Auth;
+
 
 class ArticlesController extends Controller {
 
@@ -50,8 +50,8 @@ class ArticlesController extends Controller {
      */
     public function validateArticle(): array {
          return request()->validate([
-            'title' => ['required', 'min:3', 'max:255'],
-            'description' => ['required', 'min:10', 'max:500'],
+            'title' => 'required|min:3|max:255',
+            'description' => 'required|min:10|max:500',
             'content' => 'required',
         ]);
     }

@@ -152,10 +152,10 @@
                 <p class="custom-text-navbar">Acerca del autor</p>
             </div>
             <div class="col-auto">
-                <a href="https://github.com/didrikseni"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/didrikseni" class="faster" onmouseover="animateCSS(this, 'fadeIn')"><i class="fab fa-github"></i></a>
             </div>
             <div class="col-auto">
-                <a href="https://www.linkedin.com/in/iandidriksen/"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/iandidriksen/" class="faster" onmouseover="animateCSS(this, 'fadeIn')"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
