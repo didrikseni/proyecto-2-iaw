@@ -9,6 +9,9 @@
             toolbar_mode: 'floating',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
+            images_upload_url: 'postAcceptor.php',
+            automatic_uploads: false,
+            plugins: "image imagetools"
         });
     </script>
 @endsection
