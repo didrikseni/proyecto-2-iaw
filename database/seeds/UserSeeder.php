@@ -28,5 +28,8 @@ class UserSeeder extends Seeder
             'email' => 'sofia@test.com',
             'password' => \Illuminate\Support\Facades\Hash::make('test1234'),
         ));
+
+        factory(\App\User::class, 15)->create();
+
     }
 }

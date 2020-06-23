@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Ultimos artículos') }}</div>
                     <ul class="list-unstyled ml-2">
-                        @foreach($articles as $article)
+                        @forelse ($articles as $article)
                             <li class="pt-2">
                                 <div class="row">
                                     <div class="col-8">
@@ -53,7 +53,9 @@
                                 </div>
                             </li>
                             <hr>
-                        @endforeach
+                        @empty
+                            No existen artículos para mostrar.
+                        @endforelse
                     </ul>
                 </div>
             </div>

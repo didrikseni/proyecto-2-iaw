@@ -20,11 +20,7 @@ class ArticleScore extends Model
         return round($averageScore, 2);
     }
 
-    public function hasVoted(Article $article) {
+    static public function hasVoted(Article $article) {
         return ArticleScore::where('article_id', '=', $article->id)->where('user_id', '=', Auth::id())->exists();
-    }
-
-    public function getVote(Article $article) {
-        return ArticleScore::where('user_id', '=', Auth::id())->where('article_id', '=', $article->id)->first()->vote;
     }
 }

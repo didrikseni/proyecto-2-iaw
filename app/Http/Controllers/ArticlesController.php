@@ -28,6 +28,7 @@ class ArticlesController extends Controller {
     public function store() {
         $article = array_merge($this->validateArticle(), ["user_id" => Auth::id()]);
         Article::create($article);
+
         return redirect('/home');
     }
 
@@ -36,7 +37,7 @@ class ArticlesController extends Controller {
     }
 
     public function update(Article $article) {
-        if ($article->id == Auth::id())
+        if ($article->user_id == Auth::id())
             $article->update(array_merge($this->validateArticle(), ["user_id" => Auth::id()]));
         return redirect('/articles/' . $article->id);
     }

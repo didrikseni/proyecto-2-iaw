@@ -11,6 +11,11 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
+        $cantUsers = \App\User::get()->count();
+        for ($i = 1; $i <= random_int(10, 25); $i++) {
+            factory(\App\Article::class, 1)->create(['user_id' => random_int(1,$cantUsers)]);
+        }
+
         \App\Article::create(array(
             'user_id' => 3,
             'title' => 'Machine Learning',
@@ -24,5 +29,6 @@ class ArticleSeeder extends Seeder
             'description' => 'La mejor guia especializada (?',
             'content' => 'No la manquees.'
         ));
+
     }
 }

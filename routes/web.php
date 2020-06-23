@@ -29,3 +29,4 @@ Route::get('/profile', 'UserController@index');
 Route::put('/profile', 'Usercontroller@store');
 Route::put('/profile/password',  'UserController@updatePassword');
 Route::put('/profile/avatar', 'UserController@updateAvatar');
+Route::get('/tags/{tag}', 'TagController@show');

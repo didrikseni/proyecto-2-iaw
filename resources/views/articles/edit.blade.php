@@ -1,7 +1,7 @@
 @extends('layouts.edittext')
 
 @section('content')
-    @if(auth()->id() == $article->id)
+    @if(auth()->id() == $article->user_id)
         <div class="page-content">
             <div class="container">
                 <h1 class="">Editor de artículo</h1>
@@ -37,17 +37,19 @@
 
                     <div class="form-group row justify-content-center">
                         <div class="col-auto">
-                            <button class="btn btn-secondary">Subir archivo</button>
-                        </div>
 
+                        </div>
                         <div class="col-auto">
-                            <button class="btn btn-secondary">Subir imagen</button>
+                            <span class="custom-input" hidden>
+                                <input type="file" id="custom-input" name="filename" accept="application/pdf" multiple>
+                            </span>
+                            <label for="custom-input"><span>Adjuntar archivo</span></label>
                         </div>
                     </div>
                     <br>
                     <div class="form-group row justify-content-end">
                         <div class="col-auto">
-                            <button class="btn btn-secondary">Publicar</button>
+                            <button class="custom-button">Guardar edición</button>
                         </div>
                     </div>
                 </form>

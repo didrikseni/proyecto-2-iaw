@@ -32,7 +32,7 @@
 
 <body class="d-flex flex-column">
 <!-- Nav Bar -->
-<nav class="navbar navbar-expand-sm nav fixed-top">
+<nav class="navbar navbar-expand-sm nav position-absolute fixed-top">
     <div class="nabvar-item nav-pills nabvar">
         <a href="{{ url('/home') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
             <p>Portal UNS</p>
@@ -100,7 +100,9 @@
 </nav>
 <!-- Nav Bar -->
 
+<br><br>
 @yield('content')
+<br><br>
 
 <!-- Footer -->
 <footer class="page-footer pt-4 sticky-footer">
