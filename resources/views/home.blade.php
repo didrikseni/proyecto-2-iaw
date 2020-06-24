@@ -11,7 +11,11 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Perfil') }}</div>
+                    <div class="card-header"><a href="/articles" class="card-link custom-text mr-0"><h4>Todos los artículos</h4></a></div>
+                </div>
+                <br> <br>
+                <div class="card">
+                    <div class="card-header"><h4>{{ __('Perfil') }}</h4></div>
                     <div class="row justify-content-center">
                         @if ($user->avatar == null)
                             <i class="fas fa-user fa-5x col-2 m-5"></i>
@@ -23,19 +27,19 @@
                     <br>
                     <p class="custom-text text-center">{{ $user->email }}</p>
                     <div class="text-center p-5">
-                        <button class="btn btn-primary"> <a href="/profile" class="custom-text">Modificar perfil</a></button>
+                        <a href="/profile" class="card-link custom-button">Modificar perfil</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8 text-justify mb-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Ultimos artículos') }}</div>
+                    <div class="card-header"><h4>{{ __('Ultimos artículos') }}</h4></div>
                     <ul class="list-unstyled ml-2">
                         @forelse ($articles as $article)
                             <li class="pt-2">
                                 <div class="row">
                                     <div class="col-8">
-                                        <a href="/articles/{{ $article->id }}" class="custom-text"><h4>{{ $article->title }}</h4></a>
+                                        <a href="/articles/{{ $article->id }}" class="card-link custom-text"><h5>{{ $article->title }}</h5></a>
                                     </div>
                                     <div class="col-3 ml-auto">
                                         <p>Score: {{ (new \App\ArticleScore())->score($article) }}</p>
@@ -46,9 +50,7 @@
                                         <p>{{ $article->description }}</p>
                                     </div>
                                     <div class="col-4 ml-auto">
-                                        <p>
-                                            Autor:<a href="/profile/{{ $article->user_id }}">{{ \App\User::find($article->user_id)->name }}</a>
-                                        </p>
+                                        <p>Autor: <a href="/profile/{{ $article->user_id }}" class="custom-text">{{ \App\User::find($article->user_id)->name }}</a></p>
                                     </div>
                                 </div>
                             </li>

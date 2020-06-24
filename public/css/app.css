@@ -129,27 +129,24 @@ hr {
 
 .centered-and-cropped { object-fit: cover }
 
-input[type=”file”] #custom-input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
 
-.custom-button,
-label[for="custom-input"] {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    background-color: var(--color-accent);
+.custom-button {
+    border: none;
+    background: var(--color-accent);
+    color: var(--font-navbar) !important;
+    font-weight: 100;
+    padding: 20px;
+    border-radius: 6px;
     display: inline-block;
-    transition: all .5s;
-    cursor: pointer;
-    padding: 15px 40px !important;
-    text-transform: uppercase;
-    width: fit-content;
-    text-align: center;
+    transition: all 0.3s ease 0s;
 }
 
+.custom-button:hover {
+    color: var(--font-color) !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}

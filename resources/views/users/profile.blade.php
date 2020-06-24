@@ -44,7 +44,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                                    <button type="submit" class="custom-button">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -66,13 +66,18 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <input type='file' onchange="readURL(this);"/>
+                                    <div class="col-auto">
+                                        <span class="custom-input" hidden>
+                                            <input type="file" id="custom-input" name="filename" accept="image/*" onchange="readURL(this);">
+                                        </span>
+                                        <label for="custom-input" class="custom-button"><span>Seleccionar imagen</span></label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                                    <button type="submit" class="custom-button">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -123,7 +128,7 @@
 
                             <div class="form-group row mb">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                                    <button type="submit" class="custom-button">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </form>

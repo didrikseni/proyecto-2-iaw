@@ -13,7 +13,7 @@ class CreateImageArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_images', function (Blueprint $table) {
+        Schema::create('article_image', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->binary('image');

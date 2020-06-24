@@ -2,8 +2,8 @@
 
 @section('content')
     <div id="wrapper">
-        <div class="container page-content">
-            <div id="card col-auto">
+        <div class="container">
+            <div id="card">
                 <div id="search_box">
                     <form method="POST" action="/articles/search">
                         @csrf

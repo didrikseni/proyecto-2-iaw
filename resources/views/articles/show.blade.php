@@ -3,6 +3,18 @@
 @section('head')
     <script src='https://cdn.tiny.cloud/1/3yn19ck0mgv6qus3qkej8vrfp9x3q45am4ikvprcke9nzs7q/tinymce/5/tinymce.min.js'
             referrerpolicy="origin"></script>
+    <script src="{{ asset('js/stars.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            toolbar: false,
+            menubar: false,
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            readonly: 1,
+            plugins: ['autoresize'],
+        });
+    </script>
 @endsection
 
 
@@ -23,7 +35,7 @@
                 <div id="score" class="row custom-text mb-5">
                     @if(auth()->id() == $article->user_id)
                         <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto">
-                            <button class="btn btn-secondary">Editar articulo</button>
+                            <button class="custom-button">Editar articulo</button>
                         </form>
                     @else
                         <div class="col-auto mr-auto">
@@ -85,19 +97,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/stars.js') }}"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            toolbar: false,
-            menubar: false,
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            readonly: 1,
-            plugins: ['autoresize'],
-        });
-    </script>
 @endsection

@@ -38,7 +38,7 @@
                         <span class="custom-input" hidden>
                             <input type="file" id="custom-input" name="filename" accept="application/pdf" multiple>
                         </span>
-                        <label for="custom-input"><span>Adjuntar archivo</span></label>
+                        <label for="custom-input" class="custom-button"><span>Adjuntar archivo</span></label>
                     </div>
                 </div>
                 <br>
@@ -54,13 +54,10 @@
 
 
 @section('scripts')
-    <script type="application/javascript">
+    <script>
         jQuery('input[type=file]').change(function(){
             var filename = jQuery(this).val().split('\\').pop();
             var idname = jQuery(this).attr('id');
-            console.log(jQuery(this));
-            console.log(filename);
-            console.log(idname);
             jQuery('span.'+idname).next().find('span').html(filename);
         });
     </script>

@@ -12,12 +12,33 @@
         tinymce.init({
             selector: 'textarea',
             toolbar_mode: 'floating',
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
-            images_upload_url: 'postAcceptor.php',
-            automatic_uploads: false,
-            plugins: ['autoresize', "image imagetools"],
+            plugins: 'autoresize | image imagetools',
             min_height: 600,
+            images_upload_handler: function (blobInfo, success, failure) {
+                let xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', '/article/upload/image');
+                xhr.setRequestHeader("X-CSRF-Token", '{{ csrf_token() }}');
+                xhr.onload = function() {
+                    if (xhr.status !== 200) {
+                        failure('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+                    let json = JSON.parse(xhr.responseText);
+
+                    if (!json || typeof json.location != 'string') {
+                        failure('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+                    success(json.location);
+                };
+                let formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+                xhr.send(formData);
+            }
         });
     </script>
 @endsection
