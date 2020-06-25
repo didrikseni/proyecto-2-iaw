@@ -20,7 +20,7 @@
                         @if ($user->avatar == null)
                             <i class="fas fa-user fa-5x col-2 m-5"></i>
                         @else
-                            <h1>ACA VA LA IMAGEEEN</h1>
+                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped" width="200" height="200">
                         @endif
                         <p class="text-center col-3 custom-text m-5">{{ $user->name }}</p>
                     </div>
@@ -56,7 +56,7 @@
                             </li>
                             <hr>
                         @empty
-                            No existen artículos para mostrar.
+                            <p>Todavía no existen artículos para mostrar.</p>
                         @endforelse
                     </ul>
                 </div>

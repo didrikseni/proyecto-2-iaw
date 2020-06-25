@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,14 +28,15 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('articles.create');
+        return view('articles.create', ['tags' => Tag::all()]);
     }
 
     public function store()
     {
-        $article = array_merge($this->validateArticle(), ["user_id" => Auth::id()]);
-        $article = $this->processImages($article);
-        Article::create($article);
+        $this->validateArticle();
+        $article = new Article(array_merge(request(['title','description','content']), ['user_id' => Auth::id()]));
+        $article->save();
+        $article->tags()->attach(request('tags'));
         return redirect('/home');
     }
 
@@ -64,6 +66,7 @@ class ArticlesController extends Controller
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:10|max:500',
             'content' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
     }
 
@@ -77,7 +80,6 @@ class ArticlesController extends Controller
 
     private function getImageTags($string, $result = 'string')
     {
-        //if (preg_match_all('/<img([\w\W]+?)\/>/', $string, $matches, PREG_SET_ORDER)) {
         if (preg_match_all('/;base64([\w\W]+?)\" alt="/', $string, $matches, PREG_SET_ORDER)) {
             $string = [];
             foreach ($matches as $match) {

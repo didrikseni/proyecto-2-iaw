@@ -55,23 +55,21 @@
                     <div class="card-header">{{ __('Cambiar avatar') }}</div>
                     <div class="card-body">
 
-                        <form method="POST" action="/profile/avatar">
+                        <form method="POST" action="/profile/avatar" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <img id="avatar" class="centered-and-cropped" width="200" height="200"
-                                         style="border-radius:50%" src="#" name="avatar" hidden/>
+                                    <img id="imageAvatar" class="centered-and-cropped" width="200" height="200"
+                                         style="border-radius:50%" src="#" hidden/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <div class="col-auto">
-                                        <span class="custom-input" hidden>
-                                            <input type="file" id="custom-input" name="filename" accept="image/*" onchange="readURL(this);">
-                                        </span>
-                                        <label for="custom-input" class="custom-button"><span>Seleccionar imagen</span></label>
-                                    </div>
+                                    <span class="custom-input" hidden>
+                                        <input type="file" id="custom-input" name="avatar" accept="image/*" onchange="readURL(this);">
+                                    </span>
+                                    <label for="custom-input" class="custom-button"><span>Seleccionar imagen</span></label>
                                 </div>
                             </div>
 
@@ -141,16 +139,34 @@
 
 @section('scripts')
     <script>
+        function previewFile() {
+            let preview = document.querySelector('imageAvatar');
+            let file = document.querySelector('input-image').files[0];
+            let reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+
+
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
-                    $('#avatar').attr('src', e.target.result);
+                    $('#imageAvatar').attr('src', e.target.result);
                 };
                 reader.readAsDataURL(input.files[0]);
-                document.getElementById('avatar').hidden = false;
+                document.getElementById('imageAvatar').hidden = false;
             }
         }
+
     </script>
 @endsection

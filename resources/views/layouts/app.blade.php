@@ -39,33 +39,35 @@
         </a>
     </div>
 
-    @if (Route::has('login'))
-        @auth
-            <a class="nav-link custom-text-navbar faster" href="{{ url('/articles/create') }}"
-               onmouseover="animateCSS(this, 'fadeIn')">
-                <i class="fas fa-cloud-upload-alt custom-text-navbar"></i>  Artículo
-            </a>
-        @endauth
-    @endif
-
     <div class="ml-auto">
         <ul class="navbar-nav nav-pills nav-justified">
             @if (Route::has('login'))
                 <div class="ml-auto links">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link custom-text-navbar faster" href="{{ url('/home') }}"
+                            <a class="nav-link custom-text-navbar faster" href="{{ url('/articles/create') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Home
+                                <i class="fas fa-cloud-upload-alt custom-text-navbar"></i>  Artículo
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <form method="post" action="/logout" id="logout-form">
-                                @csrf
-                                <a class="nav-link custom-text-navbar faster"
-                                   onmouseover="animateCSS(this, 'fadeIn')" href="#"
-                                   onclick="document.getElementById('logout-form').submit();"> LOGOUT </a>
-                            </form>
+                        <li>
+                            <div class="dropdown">
+                                <a class="btn dropdown-toggle custom-text-navbar" data-toggle="dropdown"
+                                   onmousedown="animateCSS(this, 'bounceIn')">
+                                    {{ __(auth()->user()->name) }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-sm-right">
+                                    <form method="GET" action="/profile" id="config-account">
+                                        @csrf
+                                        <button class="btn card-link dropdown-item"> Editar perfil </button>
+                                    </form>
+                                    <div class="dropdown-divider"></div>
+                                    <form method="POST" action="/logout" id="logout-form">
+                                        @csrf
+                                        <button class="btn card-link dropdown-item"> Salir </button>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
                     @else
                         <li class="nav-item">
