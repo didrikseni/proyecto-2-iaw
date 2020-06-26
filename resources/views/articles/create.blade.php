@@ -38,10 +38,19 @@
 
                 <div class="form-group row justify-content-center">
                     <div class="col-auto">
-                        <span class="custom-input" hidden>
-                            <input type="file" id="custom-input" name="filename" accept="application/pdf" multiple>
+                        <span class="input-files" hidden>
+                            <input type="file" id="input-files" name="filename" accept="application/pdf" multiple>
                         </span>
-                        <label for="custom-input" class="custom-button"><span>Adjuntar archivo</span></label>
+                        <label for="input-files" class="custom-button"><span>Adjuntar archivo</span></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-auto">
+                        <div></div>
+                    </div>
+                    <div class="col-auto">
+
                     </div>
                 </div>
 

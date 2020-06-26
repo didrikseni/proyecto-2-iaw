@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -34,7 +35,18 @@ class ArticlesController extends Controller
     public function store()
     {
         $this->validateArticle();
-        $article = new Article(array_merge(request(['title','description','content']), ['user_id' => Auth::id()]));
+        $article = new Article();
+        $article->title = request()->get('title');
+        $article->description = request()->get('description');
+        $article->user_id = Auth::id();
+        $article->content = '';
+        $article->save();
+        $imageSources = $this->processImages($article);
+        if ($imageSources != []) {
+            $article->content = $this->changeImageSources($imageSources);
+        } else {
+            $article->content = request()->get('content');
+        }
         $article->save();
         $article->tags()->attach(request('tags'));
         return redirect('/home');
@@ -70,25 +82,39 @@ class ArticlesController extends Controller
         ]);
     }
 
-    private function processImages(array $article)
+    private function processImages(Article $article)
     {
-        $strips = $this->getImageTags($article['content']);
-        if ($strips == []) dd('LPM NO ENCONTRO');
-        else dd($strips);
+        $strips = $this->getImageTags(request()->get('content'));
+        if ($strips != []) {
+            return ArticleImageController::storeInDatabase($strips, $article);
+        } else {
+            return [];
+        }
     }
 
 
     private function getImageTags($string, $result = 'string')
     {
-        if (preg_match_all('/;base64([\w\W]+?)\" alt="/', $string, $matches, PREG_SET_ORDER)) {
+        if (preg_match_all('/;base64,([\w\W]+?)\" alt="/', $string, $matches, PREG_SET_ORDER)) {
             $string = [];
             foreach ($matches as $match) {
                 $string[] = $match[1];
             }
-            dd($string);
             return $string;
         } else {
             return [];
         }
+    }
+
+    private function changeImageSources(array $imageSources)
+    {
+        $dom = new DOMDocument();
+        $dom->loadHTML(request()->get('content'));
+        $images = $dom->getElementsByTagName('img');
+
+        for ($i = 0; $i < count($images); $i++) {
+            $images[$i]->setAttribute('src', '/articles/image/' . $imageSources[$i]);
+        }
+        return $dom->saveHTML();
     }
 }
