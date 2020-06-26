@@ -12,8 +12,9 @@ class ArticleImageController extends Controller
         $this->middleware('auth');
     }
 
-    public function show(ArticleImage $articleImage) {
-        return '<img src="' . $articleImage->image . '" />';
+    public function show(ArticleImage $article_image) {
+        //return '<img src="data:image/jpg;base64, ' . base64_decode($article_image->image) . '"/>';
+        echo $article_image->image;
     }
 
     public function store() {
@@ -51,7 +52,7 @@ class ArticleImageController extends Controller
         foreach ($images as $image) {
             $articleImage = ArticleImage::create([
                 'name' => 'somename',
-                'image' => $image,
+                'image' => base64_encode($image),
                 'article_id' => $article->id
             ]);
             $articleImage->save();

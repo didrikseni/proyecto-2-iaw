@@ -42,12 +42,7 @@ class ArticlesController extends Controller
         $article->content = '';
         $article->save();
         $imageSources = $this->processImages($article);
-        if ($imageSources != []) {
-            $article->content = $this->changeImageSources($imageSources);
-        } else {
-            $article->content = request()->get('content');
-        }
-        $article->save();
+        $article->update(['content' => $this->changeImageSources($imageSources)]);
         $article->tags()->attach(request('tags'));
         return redirect('/home');
     }
@@ -88,7 +83,7 @@ class ArticlesController extends Controller
         if ($strips != []) {
             return ArticleImageController::storeInDatabase($strips, $article);
         } else {
-            return [];
+            return request()->get('content');
         }
     }
 
@@ -113,7 +108,11 @@ class ArticlesController extends Controller
         $images = $dom->getElementsByTagName('img');
 
         for ($i = 0; $i < count($images); $i++) {
-            $images[$i]->setAttribute('src', '/articles/image/' . $imageSources[$i]);
+            if (strpos($images[$i]->getAttribute('src'), 'portal-uns.herokuapp.com') or
+                strpos($images[$i]->getAttribute('src'), '127.0.0.1:8000')) {
+                $images[$i]->setAttribute('src', 'http://127.0.0.1:8000/articles/image/' . $imageSources[$i]);
+                $images[$i]->removeAttribute('data-mce-src');
+            }
         }
         return $dom->saveHTML();
     }
