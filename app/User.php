@@ -45,7 +45,4 @@ class User extends Authenticatable
         return $this->hasMany(ArticleScore::class);
     }
 
-    public function avatar() {
-        return base64_decode($this->belongsTo(Avatar::class));
-    }
 }

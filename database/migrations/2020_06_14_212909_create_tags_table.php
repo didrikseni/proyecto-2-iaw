@@ -20,7 +20,6 @@ class CreateTagsTable extends Migration
             $table->unique('name');
         });
 
-
         Schema::create('article_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
@@ -38,5 +37,6 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
+        Schema::dropIfExists('article_tag');
     }
 }

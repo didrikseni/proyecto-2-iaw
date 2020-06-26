@@ -16,11 +16,11 @@
                 <br> <br>
                 <div class="card">
                     <div class="card-header"><h4>{{ __('Perfil') }}</h4></div>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center pt-4">
                         @if ($user->avatar == null)
                             <i class="fas fa-user fa-5x col-2 m-5"></i>
                         @else
-                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped" width="200" height="200">
+                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped" width="100" height="100">
                         @endif
                         <p class="text-center col-3 custom-text m-5">{{ $user->name }}</p>
                     </div>

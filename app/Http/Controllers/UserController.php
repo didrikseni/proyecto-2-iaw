@@ -6,8 +6,6 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
-use Symfony\Component\Console\Input\Input;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -46,9 +44,7 @@ class UserController extends Controller
         return view('/auth.login');
     }
 
-    public function updateAvatar(Request $request) {
-        //$content = request()->avatar->openFile()->fread(request()->avatar->getSize());
-
+    public function updateAvatar() {
         $temp = file_get_contents(request()->file('avatar'));
         $user = auth()->user();
         $user->avatar = base64_encode($temp);
