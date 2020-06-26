@@ -1,39 +1,31 @@
-@extends('layouts.app')
+@extends('layouts.profilelayout')
 
-@section('content')
-    <div class="container page-content">
-        <div class="row">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-            <div class="col-sm-5 card">
-                <h2>Perfil</h2>
+@section('articles_show')
+    <div class="card-header"><h4>{{ __('Publicaciónes') }}</h4></div>
+    <ul class="list-unstyled ml-2">
+        @forelse ($articles as $article)
+            <li class="pt-2">
                 <div class="row">
-                    <div class="col-2 ml-3">
-                        <i class="fas fa-user fa-5x"></i>
+                    <div class="col-8">
+                        <a href="/articles/{{ $article->id }}" class="card-link custom-text">
+                            <h4>{{ $article->title }}</h4></a>
                     </div>
-                    <div class="col-auto">
-                        <p class="col-auto custom-text">{{ $user->name }}</p>
+                    <div class="col-3 ml-auto">
+                        <p>Score: {{ (new \App\ArticleScore())->score($article) }}</p>
                     </div>
                 </div>
-                <br>
-                <p class="custom-text text-center">{{ $user->email }}</p>
-            </div>
-            <div class="col-sm-7 text-justify card">
-                <h2>Publicaciónes</h2>
-                <hr>
-                <ul class="list-unstyled ml-2">
-                    @foreach($articles as $article)
-                        <li>
-                            <a href="/articles/{{ $article->id }}"><h4>{{ $article->title }}</h4></a>
-                            <p>{{ $article->description }}</p>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
-
+                <div class="row">
+                    <div class="col-7">
+                        <p>{{ $article->description }}</p>
+                    </div>
+                    <div class="col-4 ml-auto">
+                        <p>Autor: <a href="/profile/{{ $article->user_id }}" class="custom-text">{{ \App\User::find($article->user_id)->name }}</a></p>
+                    </div>
+                </div>
+            </li>
+            <hr>
+        @empty
+            <p>Todavía no existen artículos para mostrar.</p>
+        @endforelse
+    </ul>
 @endsection

@@ -13,7 +13,7 @@ class ArticleImageController extends Controller
     }
 
     public function show(ArticleImage $article_image) {
-        //return '<img src="data:image/jpg;base64, ' . base64_decode($article_image->image) . '"/>';
+        //return '<img src="data:image/jpg;base64, ' . $article_image->image . '"/>';
         echo $article_image->image;
     }
 
