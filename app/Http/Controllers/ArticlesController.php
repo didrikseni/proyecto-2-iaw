@@ -35,11 +35,13 @@ class ArticlesController extends Controller
     public function store()
     {
         $this->validateArticle();
-        $article = new Article();
-        $article->title = request()->get('title');
-        $article->description = request()->get('description');
-        $article->user_id = Auth::id();
-        $article->content = '';
+
+        $article = new Article([
+            'title' => request()->get('title'),
+            'description' => request()->get('description'),
+            'content' => '',
+            'user_id' => Auth::id()
+        ]);
         $article->save();
         $imageSources = $this->processImages($article);
         $article->update(['content' => $this->changeImageSources($imageSources)]);

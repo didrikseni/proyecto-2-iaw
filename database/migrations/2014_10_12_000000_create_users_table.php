@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->binary('avatar')->nullable();
+            $table->string('role')->default('user');
         });
     }
 

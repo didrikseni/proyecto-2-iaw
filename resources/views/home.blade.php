@@ -2,8 +2,8 @@
 
 @section('all_articles')
     <div class="card row">
-        <div class="card-header">
-            <a href="/articles" class="card-link custom-text"><h4>Todos los artículos</h4></a>
+        <div>
+            <a href="/articles" class="card-link custom-button text-uppercase">Todos los artículos</a>
         </div>
     </div>
 @endsection

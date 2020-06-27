@@ -6,10 +6,10 @@
 }
 
 .theme-dark {
-    --color-primary: #323232;
-    --color-accent: #212121;
+    --color-primary: #222831;
+    --color-accent: #30475e;
     --font-color: #ececec;
-    --font-navbar: #3f72af;
+    --font-navbar: #ececec;
 }
 
 .theme-pastel {

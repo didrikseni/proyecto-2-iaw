@@ -26,9 +26,11 @@
                     </div>
                     <br>
                     <p class="custom-text text-center">{{ $user->email }}</p>
-                    <div class="text-center p-5">
-                        <a href="/profile" class="card-link custom-button">Modificar perfil</a>
-                    </div>
+                    @if( auth()->id() == $user->id )
+                        <div class="text-center p-5">
+                            <a href="/profile" class="card-link custom-button">Modificar perfil</a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-sm-8 text-justify mb-4">

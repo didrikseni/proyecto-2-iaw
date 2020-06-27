@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container page-content mt-4">
+    <div class="container page-content pt-5 pb-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -69,7 +69,7 @@
                                     <span class="custom-input" hidden>
                                         <input type="file" id="custom-input" name="avatar" accept="image/*" onchange="readURL(this);">
                                     </span>
-                                    <label for="custom-input" class="custom-button"><span>Seleccionar imagen</span></label>
+                                    <label for="custom-input" class="custom-button" style="cursor:pointer"><span>Seleccionar imagen</span></label>
                                 </div>
                             </div>
 
