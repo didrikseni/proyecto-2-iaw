@@ -15,7 +15,8 @@ class UserSeeder extends Seeder
         App\User::create(array(
             'name' => 'admin',
             'email' => 'portaluns@gmail.com',
-            'password' => Hash::make('a9g238fu')
+            'password' => Hash::make('a9g238fu'),
+            'role' => 'admin'
         ));
 
         App\User::create(array(
@@ -24,19 +25,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('test1234'),
         ));
 
-        App\User::create(array(
-            'name' => 'Juan',
-            'email' => 'juan@test.com',
-            'password' => Hash::make('test1234'),
-        ));
-
-        App\User::create(array(
-            'name' => 'Sofia',
-            'email' => 'sofia@test.com',
-            'password' => Hash::make('test1234'),
-        ));
-
         factory(\App\User::class, 15)->create();
-
     }
 }

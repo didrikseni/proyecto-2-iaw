@@ -3,37 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleImage;
 use App\Tag;
 use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
 
-class ArticlesController extends Controller
-{
+class ArticlesController extends Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function index()
-    {
+    public function index() {
         $articles = Article::latest()->get();
         return view('articles.index', ['articles' => $articles]);
     }
 
-    public function show(Article $article)
-    {
+    public function show(Article $article) {
         return view('articles.show', ['article' => $article]);
     }
 
-    public function create()
-    {
+    public function create() {
         return view('articles.create', ['tags' => Tag::all()]);
     }
 
-    public function store()
-    {
+    public function store() {
         $this->validateArticle();
 
         $article = new Article([
@@ -49,28 +44,29 @@ class ArticlesController extends Controller
         return redirect('/home');
     }
 
-    public function edit(Article $article)
-    {
+    public function edit(Article $article) {
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Article $article)
-    {
+    public function update(Article $article) {
         if ($article->user_id == Auth::id())
             $article->update(array_merge($this->validateArticle(), ["user_id" => Auth::id()]));
         return redirect('/articles/' . $article->id);
     }
 
-    public function destroy()
-    {
-
+    public function destroy(Article $article) {
+        if (auth()->id() == $article->id or auth()->user()->role == 'admin') {
+            $article->delete();
+            return redirect('/home');
+        } else {
+            return redirect('/articles/'. $article->id);
+        }
     }
 
     /**
      * @return array
      */
-    public function validateArticle(): array
-    {
+    public function validateArticle(): array {
         return request()->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:10|max:500',
@@ -79,8 +75,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    private function processImages(Article $article)
-    {
+    private function processImages(Article $article) {
         $strips = $this->getImageTags(request()->get('content'));
         if ($strips != []) {
             return ArticleImageController::storeInDatabase($strips, $article);
@@ -90,8 +85,7 @@ class ArticlesController extends Controller
     }
 
 
-    private function getImageTags($string, $result = 'string')
-    {
+    private function getImageTags($string, $result = 'string') {
         if (preg_match_all('/;base64,([\w\W]+?)\" alt="/', $string, $matches, PREG_SET_ORDER)) {
             $string = [];
             foreach ($matches as $match) {
@@ -103,8 +97,7 @@ class ArticlesController extends Controller
         }
     }
 
-    private function changeImageSources(array $imageSources)
-    {
+    private function changeImageSources(array $imageSources) {
         if ($imageSources != []) {
             $dom = new DOMDocument();
             $dom->loadHTML(request()->get('content'));
@@ -121,6 +114,5 @@ class ArticlesController extends Controller
         } else {
             return request()->get('content');
         }
-
     }
 }

@@ -24,7 +24,7 @@ class ArticleSeeder extends Seeder
         ));
 
         \App\Article::create(array(
-            'user_id' => 1,
+            'user_id' => 2,
             'title' => 'Como tener 100% win rate en Fortnite',
             'description' => 'La mejor guia especializada (?',
             'content' => 'No la manquees.'

@@ -38,16 +38,28 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'password_confirmation' => 'same:password'
         ]);
-
         User::find(Auth::id())->update(['password' => Hash::make(request()->password)]);
         Auth::logout();
         return view('/auth.login');
     }
 
     public function updateAvatar() {
+        request()->validate(['avatar' => 'required']);
         $temp = file_get_contents(request()->file('avatar'));
         $user = auth()->user();
         $user->avatar = base64_encode($temp);
+        $user->save();
+        return redirect('/home');
+    }
+
+    public function updateConfig() {
+        $user = auth()->user();
+        if (request()->get('name') != "") {
+            $user->name = request()->get('name');
+        }
+        if (request()->get('email') != "") {
+            $user->email = request()->get('email');
+        }
         $user->save();
         return redirect('/home');
     }

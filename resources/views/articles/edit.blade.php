@@ -1,7 +1,7 @@
 @extends('layouts.edittext')
 
 @section('content')
-    @if(auth()->id() == $article->user_id)
+    @if(auth()->id() == $article->user_id or auth()->user()->role == 'admin')
         <div class="page-content">
             <div class="container">
                 <h1 class="">Editor de artículo</h1>
@@ -43,7 +43,7 @@
                             <span class="custom-input" hidden>
                                 <input type="file" id="custom-input" name="filename" accept="application/pdf" multiple>
                             </span>
-                            <label for="custom-input"><span>Adjuntar archivo</span></label>
+                            <label for="custom-input" class="custom-button"><span>Adjuntar archivo</span></label>
                         </div>
                     </div>
                     <br>

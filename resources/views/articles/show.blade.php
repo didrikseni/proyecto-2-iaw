@@ -33,9 +33,13 @@
                     <br> <br> <br> <br> <br>
                 </div>
                 <div id="score" class="row custom-text mb-5">
-                    @if(auth()->id() == $article->user_id)
-                        <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto">
+                    @if(auth()->id() == $article->user_id or auth()->user()->role == 'admin')
+                        <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto pr-5">
                             <button class="custom-button">Editar articulo</button>
+                        </form>
+                        <form class="delete" action="/articles/{{ $article->id }}/delete" method="POST">
+                            @csrf
+                            <button class="custom-button" onclick="return confirmDelete()">Borrar articulo</button>
                         </form>
                     @else
                         <div class="col-auto mr-auto">
@@ -97,4 +101,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function confirmDelete() {
+            return confirm("¿ Realmente desea borrar el artículo ?");
+        }
+    </script>
 @endsection
