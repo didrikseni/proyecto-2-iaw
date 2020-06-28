@@ -30,7 +30,6 @@ class ArticlesController extends Controller {
 
     public function store() {
         $this->validateArticle();
-
         $article = new Article([
             'title' => request()->get('title'),
             'description' => request()->get('description'),
@@ -55,7 +54,7 @@ class ArticlesController extends Controller {
     }
 
     public function destroy(Article $article) {
-        if (auth()->id() == $article->id or auth()->user()->role == 'admin') {
+        if (auth()->id() == $article->user_id or auth()->user()->role == 'admin') {
             $article->delete();
             return redirect('/home');
         } else {

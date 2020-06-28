@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env(' ', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,8 +39,8 @@ return [
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 465),
             'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-            'username' => env('portaluns@gmail.com'),
-            'password' => env('kvyuqbqmmumllaas'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
         ],
