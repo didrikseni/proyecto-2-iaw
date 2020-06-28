@@ -106,7 +106,7 @@ class ArticlesController extends Controller {
             for ($i = 0; $i < count($images); $i++) {
                 if (strpos($images[$i]->getAttribute('src'), 'portal-uns.herokuapp.com') or
                     strpos($images[$i]->getAttribute('src'), '127.0.0.1:8000')) {
-                    $images[$i]->setAttribute('src', 'http://127.0.0.1:8000/articles/image/' . $imageSources[$i]);
+                    $images[$i]->setAttribute('src', 'https://portal-uns.herokuapp.com/articles/image/' . $imageSources[$i]);
                     $images[$i]->removeAttribute('data-mce-src');
                 }
             }
