@@ -30,22 +30,26 @@
                         <textarea class="form-control flex-grow-1" type="text" name="content"
                                   id="content">{{ $article->content }}</textarea>
                     </div>
-                    <br> <br> <br> <br> <br>
+                    <br> <br>
                 </div>
+                <div class="row custom-text mb-5">
+                    <div class="ml-auto">
+                        <h4>Autor: <a class="custom-text" href="/profile/{{ $article->user_id }}">{{ $article->author->name }}</a></h4>
+                    </div>
+                </div>
+                @auth
                 <div id="score" class="row custom-text mb-5">
                     @if(auth()->id() == $article->user_id or auth()->user()->role == 'admin')
                         <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto pr-5">
                             <button class="custom-button">Editar articulo</button>
                         </form>
-                        <form class="delete" action="/articles/{{ $article->id }}/delete" method="POST">
+                        <form method="POST" class="delete" action="/articles/{{ $article->id }}">
                             @csrf
+                            @method('DELETE')
                             <button class="custom-button" onclick="return confirmDelete()">Borrar articulo</button>
                         </form>
                     @else
-                        <div class="col-auto mr-auto">
-                            <h4>Autor: <a class="custom-text" href="/profile/{{ $article->user_id }}">{{ $article->author->name }}</a></h4>
-                        </div>
-                        @if ( \App\ArticleScore::hasVoted($article))
+                        @if ( (new \App\ArticleScore)->hasVoted($article))
                             <div class="col-auto ml-auto">
                                 <p>Tu voto:</p>
                                 <button id="star-1" class="custom-text transparent-btn"><i class="far fa-star"></i>
@@ -91,6 +95,7 @@
                         @endif
                     @endif
                 </div>
+                @endauth
                 <div class="row">
                     <p class="custom-text">tags:
                         @foreach($article->tags as $tag)

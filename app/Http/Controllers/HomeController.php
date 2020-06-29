@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('welcome');
     }
 
     /**
@@ -30,6 +30,7 @@ class HomeController extends Controller
     }
 
     public function welcome() {
-        return view('welcome');
+        $articles = Article::latest()->paginate(15);
+        return view('welcome', ['articles' => $articles]);
     }
 }

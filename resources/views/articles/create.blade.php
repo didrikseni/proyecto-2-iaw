@@ -31,15 +31,14 @@
                 <div class="form-group">
                     <label class="label" for="content">Contenido</label>
                     <div>
-                        <textarea class="form-control form-control" type="text" name="content" id="content"
-                                  rows="20">{{ old('content') }}</textarea>
+                        <textarea class="form-control form-control" type="text" name="content" id="content" rows="20">{{ old('content') }}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group row justify-content-center">
                     <div class="col-auto">
                         <span class="input-files" hidden>
-                            <input type="file" id="input-files" name="filename" accept="application/pdf" multiple>
+                            <input type="file" id="input-files" name="files[]" accept="application/pdf" multiple>
                         </span>
                         <label for="input-files" class="custom-button"><span>Adjuntar archivo</span></label>
                     </div>

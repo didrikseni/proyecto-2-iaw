@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\ArticleImage;
+use App\ArticleFile;
 use App\Tag;
 use DOMDocument;
 use Illuminate\Support\Facades\Auth;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index' , 'show');
     }
 
     public function index() {
-        $articles = Article::latest()->get();
+        $articles = Article::latest()->paginate(12);
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -33,12 +33,12 @@ class ArticlesController extends Controller {
         $article = new Article([
             'title' => request()->get('title'),
             'description' => request()->get('description'),
-            'content' => '',
+            'content' => request()->get('content'),
             'user_id' => Auth::id()
         ]);
         $article->save();
-        $imageSources = $this->processImages($article);
-        $article->update(['content' => $this->changeImageSources($imageSources)]);
+        $this->saveFiles($article);
+        $article->update(['content' => $this->processImages($article->id)]);
         $article->tags()->attach(request('tags'));
         return redirect('/home');
     }
@@ -62,9 +62,6 @@ class ArticlesController extends Controller {
         }
     }
 
-    /**
-     * @return array
-     */
     public function validateArticle(): array {
         return request()->validate([
             'title' => 'required|min:3|max:255',
@@ -74,44 +71,25 @@ class ArticlesController extends Controller {
         ]);
     }
 
-    private function processImages(Article $article) {
-        $strips = $this->getImageTags(request()->get('content'));
-        if ($strips != []) {
-            return ArticleImageController::storeInDatabase($strips, $article);
-        } else {
-            return [];
-        }
+    public function search() {
+        $articles = Article::where('title', 'like', '%'. request()->get('title') .'%')->latest()->paginate(15);
+        return view('articles.index', ['articles' => $articles]);
     }
 
-
-    private function getImageTags($string, $result = 'string') {
-        if (preg_match_all('/;base64,([\w\W]+?)\" alt="/', $string, $matches, PREG_SET_ORDER)) {
-            $string = [];
-            foreach ($matches as $match) {
-                $string[] = $match[1];
-            }
-            return $string;
-        } else {
-            return [];
+    private function processImages(Int $id) {
+        $dom = new DOMDocument();
+        $dom->loadHTML(request()->get('content'));
+        $images = $dom->getElementsByTagName('img');
+        if (count($images) == 0)  return request()->get('content');
+        for ($i = 0; $i < count($images); $i++) {
+            $imageID = ArticleImageController::storeInDatabase($images[$i]->getAttribute('src'), $images[$i]->getAttribute('alt'), $id);
+            $images[$i]->setAttribute('src', 'image/' . $imageID);
+            $images[$i]->setAttribute('data-mce-src', 'image/' . $imageID);
         }
+        return $dom->saveHTML();
     }
 
-    private function changeImageSources(array $imageSources) {
-        if ($imageSources != []) {
-            $dom = new DOMDocument();
-            $dom->loadHTML(request()->get('content'));
-            $images = $dom->getElementsByTagName('img');
-
-            for ($i = 0; $i < count($images); $i++) {
-                if (strpos($images[$i]->getAttribute('src'), 'portal-uns.herokuapp.com') or
-                    strpos($images[$i]->getAttribute('src'), '127.0.0.1:8000')) {
-                    $images[$i]->setAttribute('src', 'https://portal-uns.herokuapp.com/articles/image/' . $imageSources[$i]);
-                    $images[$i]->removeAttribute('data-mce-src');
-                }
-            }
-            return $dom->saveHTML();
-        } else {
-            return request()->get('content');
-        }
+    private function saveFiles(Article $article) {
+       //ArticleFile::storeFiles(request()->all()['files'], $article->id);
     }
 }

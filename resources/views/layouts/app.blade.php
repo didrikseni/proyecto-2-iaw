@@ -34,9 +34,15 @@
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm nav position-absolute fixed-top">
     <div class="nabvar-item nav-pills nabvar">
-        <a href="{{ url('/home') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
-            <p>Portal UNS</p>
-        </a>
+        @auth
+            <a href="{{ url('/home') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
+                <p>Portal UNS</p>
+            </a>
+        @else
+            <a href="{{ url('/') }}" class="custom-text-navbar faster navbar-brand" onmouseover="animateCSS(this, 'fadeIn')">
+                <p>Portal UNS</p>
+            </a>
+        @endauth
     </div>
 
     <div class="ml-auto">

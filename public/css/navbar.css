@@ -28,5 +28,11 @@ nav ul li a {
 }
 
 .page-footer {
+    margin-top:auto;
     width: auto;
+}
+
+.sticky-footer {
+    flex-shrink: 1;
+    background-color: var(--color-accent) !important;
 }

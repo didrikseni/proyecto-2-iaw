@@ -17,7 +17,6 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="card-header">
                     <h3 class="text-center">
                         <a href="/articles" class="custom-text card-link">{{ __('Artículos') }}</a>
@@ -51,6 +50,11 @@
                             No existen artículos para mostrar.
                         @endforelse
                     </ul>
+                </div>
+                <div class="row">
+                    <div class="col-auto ml-auto">
+                        <p>{{ $articles->links('layouts/customPaginationView') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
