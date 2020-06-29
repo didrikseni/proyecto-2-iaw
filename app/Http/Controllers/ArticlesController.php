@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\ArticleFile;
 use App\Tag;
-use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -37,8 +35,6 @@ class ArticlesController extends Controller {
             'user_id' => Auth::id()
         ]);
         $article->save();
-        $this->saveFiles($article);
-        $article->update(['content' => $this->processImages($article->id)]);
         $article->tags()->attach(request('tags'));
         return redirect('/home');
     }
@@ -74,19 +70,6 @@ class ArticlesController extends Controller {
     public function search() {
         $articles = Article::where('title', 'like', '%'. request()->get('title') .'%')->latest()->paginate(15);
         return view('articles.index', ['articles' => $articles]);
-    }
-
-    private function processImages(Int $id) {
-        $dom = new DOMDocument();
-        $dom->loadHTML(request()->get('content'));
-        $images = $dom->getElementsByTagName('img');
-        if (count($images) == 0)  return request()->get('content');
-        for ($i = 0; $i < count($images); $i++) {
-            $imageID = ArticleImageController::storeInDatabase($images[$i]->getAttribute('src'), $images[$i]->getAttribute('alt'), $id);
-            $images[$i]->setAttribute('src', 'image/' . $imageID);
-            $images[$i]->setAttribute('data-mce-src', 'image/' . $imageID);
-        }
-        return $dom->saveHTML();
     }
 
     private function saveFiles(Article $article) {

@@ -23,8 +23,4 @@ class Article extends Model {
     public function score() {
         return $this->belongsToMany(ArticleScore::class);
     }
-
-    public function images() {
-        return $this->hasMany(ArticleImage::class);
-    }
 }

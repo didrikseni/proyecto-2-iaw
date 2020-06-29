@@ -24,7 +24,5 @@ Route::resource('profile', 'UserController');
 Route::post('/articles/search', 'ArticlesController@search');
 Route::post('/articles/{article}/vote', 'ArticleScoreController@vote');
 Route::resource('articles', 'ArticlesController');
-Route::post('/articles/image/upload', 'ArticleImageController@store');
-Route::get('/articles/image/{article_image}', 'ArticleImageController@show');
 Route::get('/tags/{tag}', 'TagController@show');
 
