@@ -1,8 +1,14 @@
 .theme-light {
+    --color-primary: #edf2f4;
+    --color-accent: #5e548e;
+    --font-color: #364f6b;
+    --font-navbar: #eeeeee
+    /*
     --color-primary: #eeeeee;
     --color-accent: #3f72af;
     --font-color: #364f6b;
     --font-navbar: #eeeeee
+    */
 }
 
 .theme-dark {
