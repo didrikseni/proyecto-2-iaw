@@ -26,20 +26,37 @@
                 </div>
                 <div class="custom-text flex-grow-1">
                     <div class="flex-grow-1">
-                        <textarea class="form-control flex-grow-1" type="text" name="content"
-                                  id="content">{{ $article->content }}</textarea>
+                        <textarea class="form-control flex-grow-1" type="text" name="content" id="content">{{ $article->content }}</textarea>
                     </div>
                     <br> <br>
                 </div>
-                <div class="row custom-text mb-5">
+                @auth
+                @if ($article->hasFiles())
+                    <div class="row custom-text mb-5">
+                        <div class="col-9">
+                            <p class="custom-text"> Archivo adjunto:
+                                <a href="/article/files/{{ $article->getFile->id }}">{{ $article->getFile->name }}</a>
+                            </p>
+                        </div>
+                    </div>
+                @endif
+                @endauth
+
+                <div class="row custom-text">
                     <div class="ml-auto">
-                        <h4>Autor: <a class="custom-text" href="/profile/{{ $article->user_id }}">{{ $article->author->name }}</a></h4>
+                        <h4> Autor:<a class="custom-text" href="/profile/{{ $article->user_id }}">{{ $article->author->name }}</a></h4>
                     </div>
                 </div>
+
+                <div class="row custom-text mb-5">
+                    <p class="custom-text">tags:
+                        @foreach($article->tags as $tag)
+                            <a class="custom-text m-2" href="/tags/{{ $tag->id }}">{{ $tag->name }}</a>
+                        @endforeach
+                    </p>
+                </div>
+
                 @auth
-                    <div class="row custom-text mb-5">
-                        <p>{{ base64_decode($article->file()->content) }} </p>
-                    </div>
                 <div id="score" class="row custom-text mb-5">
                     @if(auth()->id() == $article->user_id or auth()->user()->role == 'admin')
                         <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto pr-5">
@@ -54,18 +71,12 @@
                         @if ( (new \App\ArticleScore)->hasVoted($article))
                             <div class="col-auto ml-auto">
                                 <p>Tu voto:</p>
-                                <button id="star-1" class="custom-text transparent-btn"><i class="far fa-star"></i>
-                                </button>
-                                <button id="star-2" class="custom-text transparent-btn"><i class="far fa-star"></i>
-                                </button>
-                                <button id="star-3" class="custom-text transparent-btn"><i class="far fa-star"></i>
-                                </button>
-                                <button id="star-4" class="custom-text transparent-btn"><i class="far fa-star"></i>
-                                </button>
-                                <button id="star-5" class="custom-text transparent-btn"><i class="far fa-star"></i>
-                                </button>
-                                <p id="vote-value"
-                                   hidden>{{ auth()->user()->votes->where('article_id', '=', $article->id)->first()->vote }}</p>
+                                <button id="star-1" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
+                                <button id="star-2" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
+                                <button id="star-3" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
+                                <button id="star-4" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
+                                <button id="star-5" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
+                                <p id="vote-value" hidden>{{ (new \App\ArticleScore)->getVote($article) }}</p>
                                 <script>
                                     for (let i = 1; i <= document.getElementById("vote-value").innerHTML; i++) {
                                         let item = document.getElementById("star-" + i).firstChild;
@@ -82,29 +93,17 @@
                                 <form id="vote-form" method="POST" action="/articles/{{ $article->id }}/vote">
                                     @csrf
                                     <input name="form-value" type="hidden" id="form-value" value="0">
-                                    <button id="star-1" onmouseover="stars(1)" class="custom-text transparent-btn"
-                                            onmousedown="setSelected(1)"><i class="far fa-star"></i></button>
-                                    <button id="star-2" onmouseover="stars(2)" class="custom-text transparent-btn"
-                                            onmousedown="setSelected(2)"><i class="far fa-star"></i></button>
-                                    <button id="star-3" onmouseover="stars(3)" class="custom-text transparent-btn"
-                                            onmousedown="setSelected(3)"><i class="far fa-star"></i></button>
-                                    <button id="star-4" onmouseover="stars(4)" class="custom-text transparent-btn"
-                                            onmousedown="setSelected(4)"><i class="far fa-star"></i></button>
-                                    <button id="star-5" onmouseover="stars(5)" class="custom-text transparent-btn"
-                                            onmousedown="setSelected(5)"><i class="far fa-star"></i></button>
+                                    <button id="star-1" onmouseover="stars(1)" class="custom-text transparent-btn" onmousedown="setSelected(1)"><i class="far fa-star"></i></button>
+                                    <button id="star-2" onmouseover="stars(2)" class="custom-text transparent-btn" onmousedown="setSelected(2)"><i class="far fa-star"></i></button>
+                                    <button id="star-3" onmouseover="stars(3)" class="custom-text transparent-btn" onmousedown="setSelected(3)"><i class="far fa-star"></i></button>
+                                    <button id="star-4" onmouseover="stars(4)" class="custom-text transparent-btn" onmousedown="setSelected(4)"><i class="far fa-star"></i></button>
+                                    <button id="star-5" onmouseover="stars(5)" class="custom-text transparent-btn" onmousedown="setSelected(5)"><i class="far fa-star"></i></button>
                                 </form>
                             </div>
                         @endif
                     @endif
                 </div>
                 @endauth
-                <div class="row">
-                    <p class="custom-text">tags:
-                        @foreach($article->tags as $tag)
-                            <a class="custom-text m-2" href="/tags/{{ $tag->id }}">{{ $tag->name }}</a>
-                        @endforeach
-                    </p>
-                </div>
             </div>
         </div>
     </div>

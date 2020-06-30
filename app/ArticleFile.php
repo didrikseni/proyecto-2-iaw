@@ -3,22 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ArticleFile extends Model {
-    protected $fillable = ['article_id', 'content'];
+class ArticleFile extends Model
+{
+    protected $fillable = ['article_id', 'data', 'name', 'mime'];
 
-    public function storeFiles(UploadedFile $file, $id) {
+    public function storeFiles(UploadedFile $file, $id)
+    {
         $articleFile = ArticleFile::create([
-            'article_id' => $id,
-            'content' => base64_encode($file->get())
+            'name' => $file->getClientOriginalName(),
+            'mime' => $file->getClientMimeType(),
+            'data' => base64_encode($file->get()),
+            'article_id' => $id
         ]);
-        //base64_encode($file->get());
-        //file_get_contents($file)
         $articleFile->save();
     }
 
-    public function article() {
+    public function article()
+    {
         return $this->belongsTo(Article::class, 'article_id');
     }
 }

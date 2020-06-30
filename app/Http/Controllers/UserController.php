@@ -21,11 +21,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user){
-        return view('users.show', [
-            'user' => $user,
-            'articles' => ($user->articles())->orderBy('updated_at', 'desc')->paginate(6),
-        ]);
+    public function show($id) {
+        if (User::where('id', $id)->exists()) {
+            $user = User::where('id', $id)->first();
+            return view('users.show', [
+                'user' => $user,
+                'articles' => ($user->articles())->orderBy('updated_at', 'desc')->paginate(6),
+            ]);
+        } else {
+            return abort(404);
+        }
     }
 
     public function store() {

@@ -24,7 +24,11 @@ class Article extends Model {
         return $this->belongsToMany(ArticleScore::class);
     }
 
-    public function file() {
+    public function getFile() {
         return $this->hasOne(ArticleFile::class);
+    }
+
+    public function hasFiles() {
+        return ArticleFile::where('article_id', '=', $this->id)->exists();
     }
 }

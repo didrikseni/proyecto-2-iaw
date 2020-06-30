@@ -16,8 +16,9 @@ class CreateArticleFileTable extends Migration
         Schema::create('article_files', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->binary('content');
             $table->string('name');
+            $table->string('mime');
+            $table->text('data');
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
         });
     }

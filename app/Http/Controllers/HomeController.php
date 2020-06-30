@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
 
     public function welcome() {
-        $articles = Article::latest()->paginate(15);
+        $articles = Article::latest()->paginate(12);
         return view('welcome', ['articles' => $articles]);
     }
 }
