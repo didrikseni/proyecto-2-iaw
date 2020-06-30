@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\QueryException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArticleFile extends Model

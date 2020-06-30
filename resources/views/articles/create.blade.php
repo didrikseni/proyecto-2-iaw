@@ -78,5 +78,5 @@
 
 
 @section('scripts')
-    <script> src="{{ asset('js/createBladeLogic.js') }}" </script>
+    <script src="{{ asset('js/createBladeLogic.js') }}"></script>
 @endsection

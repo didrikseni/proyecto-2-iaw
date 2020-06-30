@@ -28,7 +28,7 @@ class Article extends Model {
         return $this->hasOne(ArticleFile::class);
     }
 
-    public function hasFiles() {
+    public function hasFile() {
         return ArticleFile::where('article_id', '=', $this->id)->exists();
     }
 }

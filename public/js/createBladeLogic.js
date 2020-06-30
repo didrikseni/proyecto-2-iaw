@@ -3,4 +3,3 @@ jQuery('input[type=file]').change(function () {
     let idname = jQuery(this).attr('id');
     jQuery('span.' + idname).next().find('span').html(filename);
 });
-

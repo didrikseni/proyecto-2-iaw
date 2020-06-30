@@ -31,7 +31,7 @@
                     <br> <br>
                 </div>
                 @auth
-                @if ($article->hasFiles())
+                @if ($article->hasFile())
                     <div class="row custom-text mb-5">
                         <div class="col-9">
                             <p class="custom-text"> Archivo adjunto:

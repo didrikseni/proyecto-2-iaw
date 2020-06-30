@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleFile;
 use Illuminate\Http\Request;
 
 class ApiArticleController extends Controller
@@ -13,7 +14,7 @@ class ApiArticleController extends Controller
      * @return false|string
      */
     public function index() {
-        return json_encode(Article::lastest()->get());
+        return json_encode(Article::select('*')->limit('5'));
     }
 
     /**
@@ -43,9 +44,14 @@ class ApiArticleController extends Controller
      * @param  Article  $article
      * @return false|string
      */
-    public function show(Article $article)
-    {
-        return json_encode($article);
+    public function show(Article $article) {
+        return json_encode([
+            'title' => $article->title,
+            'description' => $article->description,
+            'content' => $article->content,
+            'file' => $article->hasFile() ? $article->getFile->id : '',
+            'author' => $article->author->name,
+        ]);
     }
 
     /**
