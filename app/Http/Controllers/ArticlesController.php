@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleFile;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
 
 
 class ArticlesController extends Controller {
@@ -35,6 +37,7 @@ class ArticlesController extends Controller {
             'user_id' => Auth::id()
         ]);
         $article->save();
+        $this->saveFiles($article->id);
         $article->tags()->attach(request('tags'));
         return redirect('/home');
     }
@@ -72,7 +75,10 @@ class ArticlesController extends Controller {
         return view('articles.index', ['articles' => $articles]);
     }
 
-    private function saveFiles(Article $article) {
-       //ArticleFile::storeFiles(request()->all()['files'], $article->id);
+    private function saveFiles($id) {
+        $articleFiles = new ArticleFile();
+        if (request()->has('file')) {
+            $articleFiles->storeFiles(request()->file('file'), $id);
+        }
     }
 }

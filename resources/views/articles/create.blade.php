@@ -4,7 +4,7 @@
     <div class="page-content">
         <div class="container">
             <h1 class="">Nuevo Artículo</h1>
-            <form method="POST" action="/articles">
+            <form method="POST" action="/articles" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="label" for="title">Título</label>
@@ -38,7 +38,7 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-auto">
                         <span class="input-files" hidden>
-                            <input type="file" id="input-files" name="files[]" accept="application/pdf" multiple>
+                            <input type="file" id="input-files" name="file" accept="application/pdf">
                         </span>
                         <label for="input-files" class="custom-button"><span>Adjuntar archivo</span></label>
                     </div>
@@ -48,9 +48,7 @@
                     <div class="col-auto">
                         <div></div>
                     </div>
-                    <div class="col-auto">
-
-                    </div>
+                    <div class="col-auto"></div>
                 </div>
 
                 <div class="form-group">
@@ -80,11 +78,5 @@
 
 
 @section('scripts')
-    <script>
-        jQuery('input[type=file]').change(function () {
-            var filename = jQuery(this).val().split('\\').pop();
-            var idname = jQuery(this).attr('id');
-            jQuery('span.' + idname).next().find('span').html(filename);
-        });
-    </script>
+    <script> src="{{ asset('js/createBladeLogic.js') }}" </script>
 @endsection

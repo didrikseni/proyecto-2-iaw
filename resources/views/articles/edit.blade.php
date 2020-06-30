@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-auto">
                             <span class="custom-input" hidden>
-                                <input type="file" id="custom-input" name="filename" accept="application/pdf" multiple>
+                                <input type="file" id="custom-input" name="file" accept="application/pdf">
                             </span>
                             <label for="custom-input" class="custom-button"><span>Adjuntar archivo</span></label>
                         </div>

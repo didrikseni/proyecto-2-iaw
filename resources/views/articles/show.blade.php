@@ -17,7 +17,6 @@
     </script>
 @endsection
 
-
 @section('content')
     <div id="wrapper" class="page-content">
         <div id="page" class="container">
@@ -38,6 +37,9 @@
                     </div>
                 </div>
                 @auth
+                    <div class="row custom-text mb-5">
+                        <p>{{ base64_decode($article->file()->content) }} </p>
+                    </div>
                 <div id="score" class="row custom-text mb-5">
                     @if(auth()->id() == $article->user_id or auth()->user()->role == 'admin')
                         <form method="GET" action="/articles/{{ $article->id }}/edit" class="ml-auto pr-5">

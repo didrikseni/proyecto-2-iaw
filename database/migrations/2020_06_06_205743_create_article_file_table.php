@@ -17,6 +17,7 @@ class CreateArticleFileTable extends Migration
             $table->id();
             $table->timestamps();
             $table->binary('content');
+            $table->string('name');
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
         });
     }
@@ -28,6 +29,6 @@ class CreateArticleFileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_file');
+        Schema::dropIfExists('article_files');
     }
 }
