@@ -15,7 +15,19 @@ class ApiArticleController extends Controller
      */
     public function index() {
         //take(5)
-        return response(json_encode(Article::orderBy('updated_at', 'desc')->get()), 200);
+        $articles = Article::orderBy('updated_at', 'desc')->take(15)->get();
+        $response = array();
+        foreach ($articles as $article) {
+            $response[] = [
+                'title' => $article->title,
+                'description' => $article->description,
+                'content' => $article->content,
+                'tags' => $article->tags->pluck('name'),
+                'file' => $article->hasFile() ? $article->getFile->id : '',
+                'author' => $article->author->name,
+            ];
+        }
+        return response(json_encode($response), 200);
     }
 
     /**
@@ -57,6 +69,7 @@ class ApiArticleController extends Controller
             'title' => $article->title,
             'description' => $article->description,
             'content' => $article->content,
+            'tags' => $article->tags->pluck('name'),
             'file' => $article->hasFile() ? $article->getFile->id : '',
             'author' => $article->author->name,
         ]), 200);
