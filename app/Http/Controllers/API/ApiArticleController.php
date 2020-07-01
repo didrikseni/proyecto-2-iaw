@@ -48,10 +48,11 @@ class ApiArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Article  $article
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article) {
+    public function show($id) {
+        $article = Article::where('id', $id)->first();
         return response(json_encode([
             'title' => $article->title,
             'description' => $article->description,
