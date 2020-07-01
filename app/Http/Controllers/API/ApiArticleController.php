@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Article;
-use App\ArticleFile;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ApiArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return false|string
+     * @return \Illuminate\Http\Response
      */
     public function index() {
-        return json_encode(Article::select('*')->limit('5'));
+        //take(5)
+        return response(json_encode(Article::orderBy('updated_at', 'desc')->get()), 200);
     }
 
     /**
@@ -24,7 +25,13 @@ class ApiArticleController extends Controller
      */
     public function create()
     {
-        //
+        return response(json_encode([
+            'title' => 'some title here, maximum 255 chars',
+            'description' => 'description of the article, maximum 500 chars',
+            'content' => 'some content to display, images must be encoded en base64',
+            'tags' => 'optional, must be some valid tag in /api/tags',
+            'file' => 'optional, must be pdf'
+        ]), 200);
     }
 
     /**
@@ -42,16 +49,16 @@ class ApiArticleController extends Controller
      * Display the specified resource.
      *
      * @param  Article  $article
-     * @return false|string
+     * @return \Illuminate\Http\Response
      */
     public function show(Article $article) {
-        return json_encode([
+        return response(json_encode([
             'title' => $article->title,
             'description' => $article->description,
             'content' => $article->content,
             'file' => $article->hasFile() ? $article->getFile->id : '',
             'author' => $article->author->name,
-        ]);
+        ]), 200);
     }
 
     /**

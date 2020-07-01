@@ -18,4 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('articles', 'ApiArticleController');
+//Route::post('/register', 'Api\AuthController@register');
+//Route::post('/login', 'Api\AuthController@login');
+
+Route::resource('/articles', 'API\ApiArticleController')->middleware('auth:api');
+Route::resource('/users', 'API\ApiUserController');
+
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'API\AuthController@login')->name('login');
+    Route::post('register', 'API\AuthController@register');
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('logout', 'API\AuthController@logout');
+        Route::get('user', 'API\AuthController@user');
+    });
+});

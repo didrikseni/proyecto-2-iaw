@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ApiUserController extends Controller
 {
@@ -13,7 +15,7 @@ class ApiUserController extends Controller
      */
     public function index()
     {
-        //
+        return response(json_encode(User::select('name', 'email', 'avatar')->orderBy('name', 'asc')->get()), 200);
     }
 
     /**
@@ -45,7 +47,7 @@ class ApiUserController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(json_encode(User::select('name', 'email', 'avatar')->where('id', $id)->get()), 200);
     }
 
     /**
