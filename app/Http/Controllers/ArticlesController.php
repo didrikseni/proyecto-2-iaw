@@ -6,7 +6,6 @@ use App\Article;
 use App\ArticleFile;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Console\Input\Input;
 
 
 class ArticlesController extends Controller {

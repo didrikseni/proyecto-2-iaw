@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -45,4 +46,7 @@ class User extends Authenticatable
         return $this->hasMany(ArticleScore::class);
     }
 
+    public static function getFeaturedUsers() {
+        return User::withCount('articles')->orderBy('articles_count', 'desc')->take(10)->get();
+    }
 }
