@@ -16,44 +16,51 @@
                 </div>
             </form>
         </div>
-        <div class="row child justify-content-center">
-            <div class="card">
-                <div class="card-body mb-5 mt-5 col-auto">
-                    <ul class="list-unstyled ml-2">
-                        @include('articles.articleList', ['articles' => $articles])
-                        <div class="row">
-                            <div class="col-auto ml-auto">
-                                <p>{{ $articles->links('layouts/customPaginationView') }}</p>
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ __('Artículos') }}</h4>
+                    </div>
+                    <div class="card-body pb-5 mt-5">
+                        <ul class="list-unstyled ml-2">
+                            @include('articles.articleList', ['articles' => $articles])
+                            <div class="row">
+                                <div class="ml-auto">
+                                    <p>{{ $articles->links('layouts/customPaginationView') }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-auto">
+            <div class="col-sm-4">
                 <div class="card mb-5">
                     <div class="card-header">
                         <h4 class="custom-text">Artículos destacados</h4>
-                        <div class="card-body">
-                            @foreach(\App\Article::getFeaturedArticles() as $article)
-                                <div class="row">
-                                    <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
-                                    <p>Con {{ $article->score_count }}</p>
-                                </div>
-                            @endforeach
-                        </div>
+                    </div>
+                    <div class="card-body ml-2">
+                        @foreach(\App\Article::getFeaturedArticles() as $article)
+                            <div class="row">
+                                <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
+                                <p class="ml-auto">Score: {{ (new \App\ArticleScore())->score($article) }}</p>
+                            </div>
+                            <hr>
+                        @endforeach
                     </div>
                 </div>
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="custom-text">Usuarios destacados</h4>
-                        <div class="card-body">
-                            @foreach(\App\User::getFeaturedUsers() as $user)
-                                <div class="row">
-                                    <a href="/profile/{{ $user->id }}">{{ $user->name }}</a>
-                                    <p>Con {{ $user->articles_count }}</p>
-                                </div>
-                            @endforeach
-                        </div>
+                    </div>
+                    <div class="card-body ml-2">
+                        @foreach(\App\User::getFeaturedUsers() as $user)
+                            <div class="row">
+                                <a href="/profile/{{ $user->id }}">{{ $user->name }}</a>
+                                <p class="ml-auto">{{ $user->articles_count }} Artículos</p>
+                            </div>
+                            <hr>
+                        @endforeach
                     </div>
                 </div>
             </div>
