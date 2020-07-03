@@ -24,7 +24,7 @@ En cuanto a la API REST:
 * Permite obtener el nombre de los tags.
 * Permite obtener información acerca de los archivos (todos o alguno en particular): nombre, extensión, data.
 
-Para probar la api debemos importar el archivo TestAPI.JSON a la aplicación Postman. Luego debemos registrarnos con el request "Registration" o loguearnos con el request "Login" si ya estamos registrados, estos request nos devuelven un 'access_token', el cual debemos copiar, nos dirigimos a la carpeta raiz "Test API REST - Proyecto 2", y pegamos el código en segundo click->edit->Authorization : Token, con el tipo seleccionado como Bearer Token, y clickear en "update".
+Para probar la api debemos importar el archivo "Test API REST - Proyecto 2.postman_collection.json" dentro de la carpeta "API REST - Postman test", a la aplicación Postman. Luego debemos registrarnos con el request "Registration" o loguearnos con el request "Login" si ya estamos registrados, estos request nos devuelven un 'access_token', el cual debemos copiar, nos dirigimos a la carpeta raiz "Test API REST - Proyecto 2", y pegamos el código en segundo click->edit->Authorization : Token, con el tipo seleccionado como Bearer Token, y clickear en "update".
 
 Luego de ésto, ya podemos ejecutar cualquier request que querramos en las subcarpetas. 
 En éstas tenemos las request para testear: 
