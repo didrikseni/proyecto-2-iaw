@@ -100,7 +100,7 @@ hr {
     color: var(--font-navbar);
 }
 
-.fa-user, .fa-search {
+.fa-user, .fa-search, .fa-star {
     color: var(--color-accent) !important;
 }
 

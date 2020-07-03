@@ -13,6 +13,14 @@ class SavedArticleController extends Controller
         $this->middleware('auth');
     }
 
+    public function index() {
+        $user = Auth::user();
+        return view('articles.bookmark', [
+            'user' => $user,
+            'articles' => SavedArticle::getBookmarkedArticles(),
+        ]);
+    }
+
     public function store(Article $article) {
         if (SavedArticle::alreadySaved($article)) {
             return redirect()->back()->withError(['msg', 'Fail at added bookmark.']);

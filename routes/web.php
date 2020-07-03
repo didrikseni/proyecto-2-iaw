@@ -31,6 +31,7 @@ Route::get('/report/article/{article}', 'ArticlesReportsController@getReportForm
 Route::post('/report/article/{article}', 'ArticlesReportsController@reportArticle');
 Route::post('/article/bookmark/{article}', 'SavedArticleController@store');
 Route::post('/article/bookmark/remove/{article}', 'SavedArticleController@destroy');
+Route::get('/article/bookmark', 'SavedArticleController@index');
 
 
 

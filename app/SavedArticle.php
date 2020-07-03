@@ -21,4 +21,12 @@ class SavedArticle extends Model
     public static function alreadySaved(Article $article) {
         return SavedArticle::where('article_id', $article->id)->where('user_id', Auth::id())->exists();
     }
+
+    public static function getBookmarkedArticles() {
+        return Article::join('saved_articles', 'articles.id', 'saved_articles.article_id')
+            ->where('saved_articles.user_id', Auth::id())
+            ->groupBy('articles.id')
+            ->select('articles.*')
+            ->paginate(6);
+    }
 }

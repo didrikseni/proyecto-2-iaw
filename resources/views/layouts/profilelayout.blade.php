@@ -34,30 +34,7 @@
                 <div class="card">
                     @yield('card_header')
                     <ul class="list-unstyled ml-2">
-                        @forelse ($articles as $article)
-                            <li class="pt-2">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a href="/articles/{{ $article->id }}" class="card-link custom-text">
-                                            <h5>{{ $article->title }}</h5></a>
-                                    </div>
-                                    <div class="col-3 ml-auto">
-                                        <p>Score: {{ (new \App\ArticleScore())->score($article) }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p>{{ $article->description }}</p>
-                                    </div>
-                                    <div class="col-4 ml-auto">
-                                        <p>Autor: <a href="/profile/{{ $article->user_id }}" class="custom-text">{{ \App\User::find($article->user_id)->name }}</a></p>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr>
-                        @empty
-                            <p>Todavía no existen artículos para mostrar.</p>
-                        @endforelse
+                        @include('articles.articleList')
                     </ul>
                 </div>
                 <div class="row">

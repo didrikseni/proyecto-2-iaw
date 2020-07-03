@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body pb-5 mt-5">
                         <ul class="list-unstyled ml-2">
-                            @include('articles.articleList', ['articles' => $articles])
+                            @include('articles.articleList')
                             <div class="row">
                                 <div class="ml-auto">
                                     <p>{{ $articles->links('layouts/customPaginationView') }}</p>
