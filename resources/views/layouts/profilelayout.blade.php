@@ -10,7 +10,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4><a class="custom-text card-link" href="/profile/{{ $user->id }}">{{ __('Perfil') }}</a></h4>
+                        <h4 class="custom-text">{{ __('Perfil') }}</h4>
                     </div>
                     <div class="row justify-content-center pt-4">
                         @if ($user->avatar == null)
@@ -24,7 +24,7 @@
                     <p class="custom-text text-center">{{ $user->email }}</p>
                     @if( auth()->id() == $user->id )
                         <div class="text-center p-5">
-                            <a href="/profile" class="card-link custom-button">Modificar perfil</a>
+                            @yield('profile_link')
                         </div>
                     @endif
                 </div>

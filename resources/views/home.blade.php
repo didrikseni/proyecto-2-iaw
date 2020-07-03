@@ -11,3 +11,7 @@
 @section('card_header')
     <div class="card-header"><h4>{{ __('Ultimos artículos') }}</h4></div>
 @endsection
+
+@section('profile_link')
+    <a href="/profile/{{ $user->id }}" class="card-link custom-button">Ver perfil</a>
+@endsection
