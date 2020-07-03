@@ -105,11 +105,11 @@
                             <div class="col-auto ml-auto">
                                 <div class="row">
                                     <p class="mr-5 ">Tu voto:</p>
-                                    <i class="far fa-star ml-2 mr-2" id="star-1" style="font-size: 18px;"></i>
-                                    <i class="far fa-star ml-2 mr-2" id="star-2" style="font-size: 18px;"></i>
-                                    <i class="far fa-star ml-2 mr-2" id="star-3" style="font-size: 18px;"></i>
-                                    <i class="far fa-star ml-2 mr-2" id="star-4" style="font-size: 18px;"></i>
-                                    <i class="far fa-star ml-2 mr-2" id="star-5" style="font-size: 18px;"></i>
+                                    <i class="far fa-star mx-2" id="star-1" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-2" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-3" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-4" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-5" style="font-size: 16px;"></i>
                                     <p id="vote-value" hidden>{{ (new \App\ArticleScore)->getVote($article) }}</p>
                                 </div>
                                 <script>

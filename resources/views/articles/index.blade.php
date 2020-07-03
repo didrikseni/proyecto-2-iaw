@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <h4>{{ __('Artículos') }}</h4>
                     </div>
-                    <div class="card-body pb-5 mt-5">
+                    <div class="card-body">
                         <ul class="list-unstyled ml-2">
                             @include('articles.articleList')
                             <div class="row">
@@ -39,7 +39,7 @@
                     <div class="card-header">
                         <h4 class="custom-text">Artículos destacados</h4>
                     </div>
-                    <div class="card-body ml-2">
+                    <div class="card-body mx-2">
                         @foreach(\App\Article::getFeaturedArticles() as $article)
                             <div class="row">
                                 <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
@@ -53,7 +53,7 @@
                     <div class="card-header">
                         <h4 class="custom-text">Usuarios destacados</h4>
                     </div>
-                    <div class="card-body ml-2">
+                    <div class="card-body mx-2">
                         @foreach(\App\User::getFeaturedUsers() as $user)
                             <div class="row">
                                 <a href="/profile/{{ $user->id }}">{{ $user->name }}</a>
