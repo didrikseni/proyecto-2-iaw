@@ -26,4 +26,5 @@ Route::post('/articles/{article}/vote', 'ArticleScoreController@vote');
 Route::resource('articles', 'ArticlesController');
 Route::get('/tags/{tag}', 'TagController@show');
 Route::get('/article/files/{articleFile}', 'ArticleFileController@show');
+Route::get('/reported/articles', 'ArticlesReportsController@reports');
 

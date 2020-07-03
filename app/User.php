@@ -49,4 +49,8 @@ class User extends Authenticatable
     public static function getFeaturedUsers() {
         return User::withCount('articles')->orderBy('articles_count', 'desc')->take(5)->get();
     }
+
+    public function reports() {
+        return $this->hasMany(ArticlesReports::class);
+    }
 }

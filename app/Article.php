@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\This;
 
 class Article extends Model {
 
@@ -40,5 +41,9 @@ class Article extends Model {
             ->select('articles.*')
             ->limit(5)
             ->get();
+    }
+
+    public function reports() {
+        return $this->hasMany(ArticlesReports::class);
     }
 }
