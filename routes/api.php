@@ -22,3 +22,5 @@ Route::post('/login', 'API\AuthController@login');
 
 Route::resource('/api_articles', 'API\ApiArticleController')->middleware('auth:api');
 Route::resource('/api_users', 'API\ApiUserController')->middleware('auth:api');
+Route::resource('/api_tags', 'API\ApiTagController')->middleware('auth:api');
+Route::resource('/api_files', 'API\ApiFileController')->middleware('auth:api');

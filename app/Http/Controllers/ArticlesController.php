@@ -60,7 +60,7 @@ class ArticlesController extends Controller {
         }
     }
 
-    public function validateArticle(): array {
+    private function validateArticle(): array {
         return request()->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:10|max:500',
