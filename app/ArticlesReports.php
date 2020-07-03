@@ -25,6 +25,10 @@ class ArticlesReports extends Model
         return self::REASONS[$this->reason];
     }
 
+    public static function getReasonID(string $reason) {
+        return array_search($reason, self::REASONS);
+    }
+
     public function article() {
         return $this->belongsTo(Article::class);
     }
@@ -41,4 +45,7 @@ class ArticlesReports extends Model
             ->get();
     }
 
+    public static function getAllReasons() {
+        return self::REASONS;
+    }
 }

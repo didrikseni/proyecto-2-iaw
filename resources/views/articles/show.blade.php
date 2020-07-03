@@ -20,6 +20,22 @@
 @section('content')
     <div id="wrapper" class="page-content">
         <div id="page" class="container">
+            <div class="row">
+                <div class="ml-auto">
+                    @if(auth() and auth()->id() != $article->user_id and auth()->user()->role != 'admin')
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" onmousedown="animateCSS(this, 'bounceIn')"><i class="fas fa-ellipsis-h"></i></a>
+                            <div class="dropdown-menu">
+                                <form method="GET" action="/report/article/{{ $article->id }}" id="config-account">
+                                    @csrf
+                                    <button class="btn card-link dropdown-item"> Reportar publicación </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
             <div id="content flex">
                 <div id="title" class="custom-text">
                     <h2>{{ $article->title }}</h2>

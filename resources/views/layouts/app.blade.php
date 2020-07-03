@@ -64,7 +64,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-sm-right">
                                     @if(auth()->user()->role == 'admin')
-                                        <form method="GET" action="/reported/articles" id="config-account">
+                                        <form method="GET" action="/report/articles" id="config-account">
                                             @csrf
                                             <button class="btn card-link dropdown-item"> Revisar reportes </button>
                                         </form>

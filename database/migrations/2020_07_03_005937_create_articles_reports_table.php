@@ -19,6 +19,7 @@ class CreateArticlesReportsTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
             $table->unsignedSmallInteger('reason');
+            $table->unique(['article_id', 'user_id']);
         });
     }
 
