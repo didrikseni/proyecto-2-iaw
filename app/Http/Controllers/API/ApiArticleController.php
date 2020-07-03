@@ -44,12 +44,12 @@ class ApiArticleController extends Controller
     public function create()
     {
         return response(json_encode([
-            'title' => 'some title here, max 255 char',
-            'description' => 'description of the article, max 500 char',
-            'content' => 'some content to display in html format, images must be encoded en base64',
-            'tags' => 'optional, must be some valid tag in /api/api_tags',
-            'file' => 'optional, must be pdf',
-            'max_post_size' => '6MB per article'
+            'title' => 'some title here, max 255 char.',
+            'description' => 'description of the article, max 500 char.',
+            'content' => 'some content to display, images cant be uploaded from the api yet.',
+            'tags' => 'optional, must be some valid tag in /api/api_tags.',
+            'file' => 'optional, must be pdf.',
+            'max_post_size' => '6MB per article.'
         ]), 200);
     }
 
