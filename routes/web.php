@@ -21,7 +21,7 @@ Route::put('/profile/config', 'UserController@updateConfig');
 Route::put('/profile/password',  'UserController@updatePassword');
 Route::put('/profile/avatar', 'UserController@updateAvatar');
 Route::resource('profile', 'UserController');
-Route::post('/articles/search', 'ArticlesController@search');
+Route::post('/search', 'ArticlesController@search');
 Route::post('/articles/{article}/vote', 'ArticleScoreController@vote');
 Route::resource('articles', 'ArticlesController');
 Route::get('/tags/{tag}', 'TagController@show');

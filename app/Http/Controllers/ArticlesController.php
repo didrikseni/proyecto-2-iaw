@@ -70,7 +70,8 @@ class ArticlesController extends Controller {
     }
 
     public function search() {
-        $articles = Article::where('title', 'like', '%'. request()->get('title') .'%')->latest()->paginate(15);
+        $articles = Article::whereRaw("title LIKE  '%" . request()->get('search') . "%' OR description LIKE '%". request()->get('search') . "%'")
+            ->orderByDesc('updated_at')->paginate(15);
         return view('articles.index', ['articles' => $articles]);
     }
 

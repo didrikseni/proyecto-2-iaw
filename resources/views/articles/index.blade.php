@@ -4,11 +4,11 @@
     <!-- Page Content -->
     <div class="container page-content child">
         <div id="search_box">
-            <form method="POST" action="/articles/search">
+            <form method="POST" action="/search">
                 @csrf
                 <div class="row mb-5 mt-5 justify-content-center">
                     <div class="col-8">
-                        <input class="input-group form-control" type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Buscar...">
+                        <input class="input-group form-control" type="text" name="search" id="search" value="{{ old('search') }}" placeholder="Buscar artículo por palabra clave...">
                     </div>
                     <div class="col-auto">
                         <button class="transparent-btn"><i class="fas fa-search fa-lg"></i></button>
