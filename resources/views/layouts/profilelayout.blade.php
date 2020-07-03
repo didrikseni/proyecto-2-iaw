@@ -12,16 +12,20 @@
                     <div class="card-header">
                         <h4 class="custom-text">{{ __('Perfil') }}</h4>
                     </div>
-                    <div class="row justify-content-center pt-4">
+                    <div class="row pt-4">
                         @if ($user->avatar == null)
-                            <i class="fas fa-user fa-5x col-2 m-5"></i>
+                            <i class="fas fa-user fa-5x col-auto ml-5 mr-3 mt-3 mb-5"></i>
                         @else
-                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped" width="100" height="100">
+                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped col-auto ml-5 mr-3 mt-3 mb-2" width="100" height="100">
                         @endif
-                        <p class="text-center col-3 custom-text m-5">{{ $user->name }}</p>
+                        <p class="text-center col-auto custom-text mt-5 mb-2">{{ $user->name }}</p>
                     </div>
-                    <br>
-                    <p class="custom-text text-center">{{ $user->email }}</p>
+                    <hr>
+                    <p class="custom-text text-center"> Email: {{ $user->email }}</p>
+                    <p class="custom-text text-center"> Cantidad de artículos: {{ $user->articles->count() }}</p>
+                    <p class="custom-text text-center"> Puntuación media: {{ $user->averageScore() }}</p>
+                    <hr>
+
                     @if( auth()->id() == $user->id )
                         <div class="text-center p-5">
                             @yield('profile_link')
