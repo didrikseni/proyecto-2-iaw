@@ -7,9 +7,11 @@
             <form method="POST" action="/articles/search">
                 @csrf
                 <div class="row mb-5 mt-5 justify-content-center">
-                    <div class="flex-grow-1 m-5">
-                        <script async src="https://cse.google.com/cse.js?cx=012732306639587396339:rzq4casryxm"></script>
-                        <div class="gcse-searchbox-only"></div>
+                    <div class="col-8">
+                        <input class="input-group form-control" type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Buscar...">
+                    </div>
+                    <div class="col-auto">
+                        <button class="transparent-btn"><i class="fas fa-search fa-lg"></i></button>
                     </div>
                 </div>
             </form>

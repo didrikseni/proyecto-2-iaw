@@ -96,12 +96,12 @@ hr {
     padding: 0;
 }
 
-.fas, .fa {
-    color: var(--color-accent) !important;
-}
-
 .fab {
     color: var(--font-navbar);
+}
+
+.fa-user, .fa-search {
+    color: var(--color-accent) !important;
 }
 
 .card {

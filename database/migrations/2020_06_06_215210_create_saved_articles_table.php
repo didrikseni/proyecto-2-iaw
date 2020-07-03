@@ -18,6 +18,7 @@ class CreateSavedArticlesTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->unique(['article_id', 'user_id']);
         });
     }
 

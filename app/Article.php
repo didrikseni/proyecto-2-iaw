@@ -3,8 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\This;
 
 class Article extends Model {
 
@@ -45,5 +43,9 @@ class Article extends Model {
 
     public function reports() {
         return $this->hasMany(ArticlesReports::class);
+    }
+
+    public function bookmarks() {
+        return $this->hasMany(SavedArticle::class);
     }
 }

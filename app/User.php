@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -52,5 +51,9 @@ class User extends Authenticatable
 
     public function reports() {
         return $this->hasMany(ArticlesReports::class);
+    }
+
+    public function bookmarks() {
+        return $this->hasMany(SavedArticle::class);
     }
 }
