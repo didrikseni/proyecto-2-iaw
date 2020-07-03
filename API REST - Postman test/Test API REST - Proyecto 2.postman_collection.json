@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "5c058d34-9472-49c1-abd7-b3910ec82313",
+		"name": "Test API REST - Proyecto 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/register?name=jon doe&email=jondoe@example.com&password=password&password_confirmation=password",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "jon doe"
+								},
+								{
+									"key": "email",
+									"value": "jondoe@example.com"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/login?email=jondoe@example.com&password=password",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jondoe@example.com"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "Getting all articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting an article with image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles/36",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_articles",
+								"36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting an article with file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles/37",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_articles",
+								"37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting create article information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles/create",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_articles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Storing new article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles?title=PRUEBA DESDE LA API&description=ESTA ES UNA PRUEBA DE CREAR POST DESDE API&content=<p>Este es el contenido de mi articulo...</p>",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_articles"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "PRUEBA DESDE LA API"
+								},
+								{
+									"key": "description",
+									"value": "ESTA ES UNA PRUEBA DE CREAR POST DESDE API"
+								},
+								{
+									"key": "content",
+									"value": "<p>Este es el contenido de mi articulo...</p>"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "da369e3b-4c30-458b-b13f-c1171161083b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a67e3e3-b7c8-447a-8f64-69925fe1edba",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Getting all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_users",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_users/2",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ca2d4d72-20fd-46b8-a2a8-2c92e1551778",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b414bad4-5f53-4aab-86e6-97c81561c155",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Getting all the files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_files",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting one file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_files/1",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_files",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Getting all tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_tags",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting a tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://portal-uns.herokuapp.com/api/api_tags/4",
+							"protocol": "https",
+							"host": [
+								"portal-uns",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"api_tags",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmU1NTE1ZGYxMWM3NzlkNzg5ZGJhNDJlN2I4MTZlMDQ0ZmZiNWQ0NDE3MDM4MWNkMDViYWEyNTdjZjVmNzZjYmMyNTk5MDI2NDY5NGU0ZjgiLCJpYXQiOjE1OTM4MTQwNjUsIm5iZiI6MTU5MzgxNDA2NSwiZXhwIjoxNjI1MzUwMDY1LCJzdWIiOiIzMSIsInNjb3BlcyI6W119.wze-dMxNGjn9FjTgN4e-3LbWULi_n3F501yfmi6rwKoXc1u9IjbWbPH8ChURUeG8cR5RK7F-kIY35EjzVb1ft25ikkz3jRkfnucPZg-7_3jGesPQT0bH_UQQLorfdAC3u5ofc58IX-mQQaF46jvQAUhM0n935KcpFd0YVd1pSzyTUWLI8QpNUvCKKY_pj5__nApxhUUzs2gBZrBosV_u7wcIFxqun8h0AmBnCihSdvu5G-WXz_HexLSWpayo1wWhUF9ZOab9iyh_zmdjMsf96l_ojSgIDqcy2Qp8mGTQqlOGJ-JFhalAm1i9SS8SBm2YRVD9HXc0LxGS6aIj91uec4bXzUJ73W1cFrtI0ZaIsuV1e48nHmBPB7tsNbpRRbjLeJ_gLW2XLM1CP9eKk_q7QCRyv9mP_JS0NMtbD-IjpqgBTgLn2aHPafZZVXV2blBfWaOuPhkx-W4BK-b4VCam3nglpPQXU7Cm1qOzP1X97fxymlp3MMIL9WNRjeHm3X1azPFZRI-usiqjhQyVxygRTit2d5QTh8IJrYQkUQoYEA8GYrMfd8pzODve1oAC5bLdr5hOaUx0xr0oCrW7s34z1iJviCbzCruyg9kAoToyi8vd3TYDgnbuKKj1wtFvK21PUpkeCwf5Y4RORHIQaVXcKj2TL1U8csZCn7ggh7afyIY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "27e788fa-2fba-4ca9-b529-167379265a9b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "37bb0d31-3e67-4780-a67b-0f29b481c5e1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

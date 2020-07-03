@@ -86,14 +86,14 @@
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ url('/login') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Login
+                                Ingresar
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ route('register') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Register
+                                Registrar
                             </a>
                         </li>
                     @endauth
