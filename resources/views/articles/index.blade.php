@@ -39,10 +39,10 @@
                     <div class="card-header">
                         <h4 class="custom-text">Artículos destacados</h4>
                     </div>
-                    <div class="card-body mx-2">
+                    <div class="card-body mx-3">
                         @foreach(\App\Article::getFeaturedArticles() as $article)
                             <div class="row">
-                                <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
+                                <a href="/articles/{{ $article->id }}" class="custom-text">{{ $article->title }}</a>
                                 <p class="ml-auto">Score: {{ (new \App\ArticleScore())->score($article) }}</p>
                             </div>
                             <hr>
@@ -53,10 +53,10 @@
                     <div class="card-header">
                         <h4 class="custom-text">Usuarios destacados</h4>
                     </div>
-                    <div class="card-body mx-2">
+                    <div class="card-body mx-3">
                         @foreach(\App\User::getFeaturedUsers() as $user)
                             <div class="row">
-                                <a href="/profile/{{ $user->id }}">{{ $user->name }}</a>
+                                <a href="/profile/{{ $user->id }}" class="custom-text">{{ $user->name }}</a>
                                 <p class="ml-auto">{{ $user->articles_count }} Artículos</p>
                             </div>
                             <hr>
