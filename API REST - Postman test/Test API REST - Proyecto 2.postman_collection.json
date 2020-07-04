@@ -111,7 +111,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://portal-uns.herokuapp.com/api/api_articles/36",
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles/33",
 							"protocol": "https",
 							"host": [
 								"portal-uns",
@@ -121,7 +121,7 @@
 							"path": [
 								"api",
 								"api_articles",
-								"36"
+								"33"
 							]
 						}
 					},
@@ -133,7 +133,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://portal-uns.herokuapp.com/api/api_articles/37",
+							"raw": "https://portal-uns.herokuapp.com/api/api_articles/34",
 							"protocol": "https",
 							"host": [
 								"portal-uns",
@@ -143,7 +143,7 @@
 							"path": [
 								"api",
 								"api_articles",
-								"37"
+								"34"
 							]
 						}
 					},
@@ -261,7 +261,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://portal-uns.herokuapp.com/api/api_users/2",
+							"raw": "https://portal-uns.herokuapp.com/api/api_users/1",
 							"protocol": "https",
 							"host": [
 								"portal-uns",
@@ -271,7 +271,7 @@
 							"path": [
 								"api",
 								"api_users",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -406,7 +406,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmU1NTE1ZGYxMWM3NzlkNzg5ZGJhNDJlN2I4MTZlMDQ0ZmZiNWQ0NDE3MDM4MWNkMDViYWEyNTdjZjVmNzZjYmMyNTk5MDI2NDY5NGU0ZjgiLCJpYXQiOjE1OTM4MTQwNjUsIm5iZiI6MTU5MzgxNDA2NSwiZXhwIjoxNjI1MzUwMDY1LCJzdWIiOiIzMSIsInNjb3BlcyI6W119.wze-dMxNGjn9FjTgN4e-3LbWULi_n3F501yfmi6rwKoXc1u9IjbWbPH8ChURUeG8cR5RK7F-kIY35EjzVb1ft25ikkz3jRkfnucPZg-7_3jGesPQT0bH_UQQLorfdAC3u5ofc58IX-mQQaF46jvQAUhM0n935KcpFd0YVd1pSzyTUWLI8QpNUvCKKY_pj5__nApxhUUzs2gBZrBosV_u7wcIFxqun8h0AmBnCihSdvu5G-WXz_HexLSWpayo1wWhUF9ZOab9iyh_zmdjMsf96l_ojSgIDqcy2Qp8mGTQqlOGJ-JFhalAm1i9SS8SBm2YRVD9HXc0LxGS6aIj91uec4bXzUJ73W1cFrtI0ZaIsuV1e48nHmBPB7tsNbpRRbjLeJ_gLW2XLM1CP9eKk_q7QCRyv9mP_JS0NMtbD-IjpqgBTgLn2aHPafZZVXV2blBfWaOuPhkx-W4BK-b4VCam3nglpPQXU7Cm1qOzP1X97fxymlp3MMIL9WNRjeHm3X1azPFZRI-usiqjhQyVxygRTit2d5QTh8IJrYQkUQoYEA8GYrMfd8pzODve1oAC5bLdr5hOaUx0xr0oCrW7s34z1iJviCbzCruyg9kAoToyi8vd3TYDgnbuKKj1wtFvK21PUpkeCwf5Y4RORHIQaVXcKj2TL1U8csZCn7ggh7afyIY",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDE2NzgzNWU5MWFlOWVjZjBjZGU5YjA4N2VmMjVhNmYxOTQ3YTVhYWIwYTg3MmQ2NDQzYTk0Y2MzM2ZjMjdjNzA5ZGE3NGJlNzI4Yjg1YmIiLCJpYXQiOjE1OTM4MjMxNzUsIm5iZiI6MTU5MzgyMzE3NSwiZXhwIjoxNjI1MzU5MTc1LCJzdWIiOiIzMSIsInNjb3BlcyI6W119.Lw7VKaYFJJxJEe8jiYcL9NtNqdd7VPCHux1qHmnTEXsMY054h1gVm4m4FsRIC6O5lnCkbknicVEUHxWo9YQa7rTr81NZKJMwA4RcbT8kCHoBxsHpIj_WfsjnHj1BfT_qAHjhwwIrpo-wclN2N6twUYOBxjkf_RutTwt8f89XdySI_uEyr3YLsfP4q4zqbJTdaX2hfCJ9CCAdLmpC_aWP4A2weq7tFovUWhU867BDmloBM3sq8qakjzZ8CUGu6BZEL145nTmDoGny8NE57nsU5bJcANBwVXj0ktjrxJ9fCgslfXUTfqLWA4lj7GSZWLGXKo1Sb9KHY3_CZ_IE7GFq1gjNutKrKU7l6p4V-7bJZKPaYJOTCC8V4Xgyt3-YxUzrBqkgZH61f8Hnl4Ej-EyiXMOSzl3k6del5XQjeHEd49nEpJsrVJFNGDqsdUa2F2BU_OvbF03fxhZQ3dzFlTAEE4WLd-r5cSUPwiYP1-TU5GvjwQ5LNTX2orGIJxFVVdz7UUjN11mhq3QX4E6sAhTDE3MHHxfo9JpZqvDiMSU5rvDpAW-R3BoXhT_zvuHKD24_SeBZL0Z89OzX2WGBps1WCo30uFFdSivAfC9yn-iRT3JlBmPhE5WqMdWH5bp833OxynpngyuoOca9lau-IPzbdDsQmXFHLWAyEMufEsxBTgI",
 				"type": "string"
 			}
 		]

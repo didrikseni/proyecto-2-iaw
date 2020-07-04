@@ -93,7 +93,7 @@
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ route('register') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Registrar
+                                Registrarse
                             </a>
                         </li>
                     @endauth
