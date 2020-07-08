@@ -1,0 +1,147 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+:root {
+    --blue: #3490dc;
+    --indigo: #6574cd;
+    --purple: #9561e2;
+    --pink: #f66d9b;
+    --red: #e3342f;
+    --orange: #f6993f;
+    --yellow: #ffed4a;
+    --green: #38c172;
+    --teal: #4dc0b5;
+    --cyan: #6cb2eb;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #3490dc;
+    --secondary: #6c757d;
+    --success: #38c172;
+    --info: #6cb2eb;
+    --warning: #ffed4a;
+    --danger: #e3342f;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Nunito", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 80px;
+    font-family: "Nunito", sans-serif !important;
+    margin: 0;
+    background: var(--color-primary) !important;
+    background-color: var(--color-primary) !important;
+}
+
+html,
+body {
+    height: 100%;
+    font-style: var(--font-color);
+}
+
+.custom-text {
+    color: var(--font-color) !important;
+}
+
+.page-content {
+    flex: 1 0 auto;
+}
+
+small {
+    font-size: 14px;
+}
+
+h1 {
+    text-align: center;
+    padding: 50px 0;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+    font-size: 40px;
+    color: var(--font-color);
+}
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    font-weight: 300;
+    padding: 50px;
+    color: var(--font-color);
+}
+
+h4 {
+    color: var(--font-color);
+}
+
+hr {
+    display: block;
+    height: 5px;
+    border: 0;
+    border-top: 15px solid var(--color-accent);
+    margin: 1em;
+    padding: 0;
+}
+
+.fab {
+    color: var(--font-navbar);
+}
+
+.fa-user, .fa-search, .fa-star {
+    color: var(--color-accent) !important;
+}
+
+.card {
+    background-color: var(--color-primary) !important;
+    color: var(--font-color);
+}
+
+.form-group {
+    color: var(--font-color);
+}
+
+.transparent-btn {
+    background: transparent !important;
+    border: none;
+}
+
+.transparent-btn:active {
+    border: none !important;
+}
+
+.centered-and-cropped { object-fit: cover }
+
+
+.custom-button {
+    border: none;
+    background: var(--color-accent);
+    color: var(--font-navbar) !important;
+    font-weight: 100;
+    padding: 20px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+.custom-button:hover {
+    color: var(--font-color) !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
