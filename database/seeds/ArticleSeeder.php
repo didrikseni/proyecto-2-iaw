@@ -12,7 +12,7 @@ class ArticleSeeder extends Seeder
     public function run()
     {
         $cantUsers = \App\User::get()->count();
-        for ($i = 1; $i <= random_int(30, 50); $i++) {
+        for ($i = 1; $i <= random_int(100, 150); $i++) {
             factory(\App\Article::class, 1)->create(['user_id' => random_int(2,$cantUsers)]);
         }
 
