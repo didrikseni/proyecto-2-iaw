@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -20,7 +21,7 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response([ 'user' => $user, 'access_token' => $accessToken]);
+        return response(json_encode(['userData' => ['user' => auth()->user(), 'access_token' => $accessToken]]), 200);
     }
 
     public function login(Request $request) {
@@ -29,10 +30,24 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials']);
+            return response(['message' => 'Invalid Credentials'], 401);
         }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(json_encode(['userData' => ['user' => auth()->user(), 'access_token' => $accessToken]]), 200);
     }
+
+    public function logged_in(Request $request) {
+        if (DB::table('oauth_access_tokens')->where('user_id', '=', $request->user_id)->exists()){
+            return response(json_encode(['userData' => auth()->user()]), 200);
+        } else {
+            return response(['message' => 'Not logged in'], 418);
+        }
+    }
+
+    public function logout(Request $request) {
+        $request->user()->token()->revoke();
+        return response()->json(['message' => 'Successfully logged out']);
+}
+
 }
