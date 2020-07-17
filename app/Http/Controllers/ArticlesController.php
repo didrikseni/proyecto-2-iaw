@@ -60,7 +60,7 @@ class ArticlesController extends Controller {
         }
     }
 
-    public function validateArticle(): array {
+    private function validateArticle(): array {
         return request()->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:10|max:500',
@@ -70,7 +70,8 @@ class ArticlesController extends Controller {
     }
 
     public function search() {
-        $articles = Article::where('title', 'like', '%'. request()->get('title') .'%')->latest()->paginate(15);
+        $articles = Article::whereRaw("title LIKE  '%" . request()->get('search') . "%' OR description LIKE '%". request()->get('search') . "%'")
+            ->orderByDesc('updated_at')->paginate(15);
         return view('articles.index', ['articles' => $articles]);
     }
 

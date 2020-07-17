@@ -10,21 +10,25 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header">
-                        <h4><a class="custom-text card-link" href="/profile/{{ $user->id }}">{{ __('Perfil') }}</a></h4>
+                        <h4 class="custom-text">{{ __('Perfil') }}</h4>
                     </div>
-                    <div class="row justify-content-center pt-4">
+                    <div class="row pt-4">
                         @if ($user->avatar == null)
-                            <i class="fas fa-user fa-5x col-2 m-5"></i>
+                            <i class="fas fa-user fa-5x col-auto ml-5 mr-3 mt-3 mb-5"></i>
                         @else
-                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped" width="100" height="100">
+                            <img src="data:image/jpg;base64, {{ stream_get_contents($user->avatar) }}" style="border-radius:50%" class="centered-and-cropped col-auto ml-5 mr-3 mt-3 mb-2" width="100" height="100">
                         @endif
-                        <p class="text-center col-3 custom-text m-5">{{ $user->name }}</p>
+                        <p class="text-center col-auto custom-text mt-5 mb-2">{{ $user->name }}</p>
                     </div>
-                    <br>
-                    <p class="custom-text text-center">{{ $user->email }}</p>
+                    <hr>
+                    <p class="custom-text text-center"> Email: {{ $user->email }}</p>
+                    <p class="custom-text text-center"> Cantidad de artículos: {{ $user->articles->count() }}</p>
+                    <p class="custom-text text-center"> Puntuación media: {{ $user->averageScore() }}</p>
+                    <hr>
+
                     @if( auth()->id() == $user->id )
                         <div class="text-center p-5">
-                            <a href="/profile" class="card-link custom-button">Modificar perfil</a>
+                            @yield('profile_link')
                         </div>
                     @endif
                 </div>
@@ -34,30 +38,7 @@
                 <div class="card">
                     @yield('card_header')
                     <ul class="list-unstyled ml-2">
-                        @forelse ($articles as $article)
-                            <li class="pt-2">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <a href="/articles/{{ $article->id }}" class="card-link custom-text">
-                                            <h5>{{ $article->title }}</h5></a>
-                                    </div>
-                                    <div class="col-3 ml-auto">
-                                        <p>Score: {{ (new \App\ArticleScore())->score($article) }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p>{{ $article->description }}</p>
-                                    </div>
-                                    <div class="col-4 ml-auto">
-                                        <p>Autor: <a href="/profile/{{ $article->user_id }}" class="custom-text">{{ \App\User::find($article->user_id)->name }}</a></p>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr>
-                        @empty
-                            <p>Todavía no existen artículos para mostrar.</p>
-                        @endforelse
+                        @include('articles.articleList')
                     </ul>
                 </div>
                 <div class="row">

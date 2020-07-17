@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSavedArticlesTable extends Migration
+class CreateArticlesReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSavedArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('saved_articles', function (Blueprint $table) {
+        Schema::create('articles_reports', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->unsignedSmallInteger('reason');
             $table->unique(['article_id', 'user_id']);
         });
     }
@@ -29,6 +30,6 @@ class CreateSavedArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('saved_articles');
+        Schema::dropIfExists('articles_reports');
     }
 }

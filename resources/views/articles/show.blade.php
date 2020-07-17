@@ -20,6 +20,24 @@
 @section('content')
     <div id="wrapper" class="page-content">
         <div id="page" class="container">
+            <div class="row">
+                <div class="ml-auto">
+                    @auth
+                    @if(auth()->id() != $article->user_id and auth()->user()->role != 'admin')
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" onmousedown="animateCSS(this, 'bounceIn')"><i class="fas fa-ellipsis-h"></i></a>
+                            <div class="dropdown-menu">
+                                <form method="GET" action="/report/article/{{ $article->id }}" id="config-account">
+                                    @csrf
+                                    <button class="btn card-link dropdown-item"> Reportar publicación </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endif
+                    @endauth
+                </div>
+            </div>
+
             <div id="content flex">
                 <div id="title" class="custom-text">
                     <h2>{{ $article->title }}</h2>
@@ -68,18 +86,35 @@
                             <button class="custom-button" onclick="return confirmDelete()">Borrar articulo</button>
                         </form>
                     @else
-                        @if ( (new \App\ArticleScore)->hasVoted($article))
+                        @if((\App\SavedArticle::alreadySaved($article)))
+                            <div class="col-2 mr-auto">
+                                <form method="POST" action="/article/bookmark/remove/{{ $article->id }}">
+                                    @csrf
+                                    <button class="custom-button row"><i class="fas fa-bookmark fa-lg"> Guardado</i></button>
+                                </form>
+                            </div>
+                        @else
+                            <div class="col-2 mr-auto">
+                                <form method="POST" action="/article/bookmark/{{ $article->id }}">
+                                    @csrf
+                                    <button class="custom-button"><i class="far fa-bookmark fa-lg"> Guardar</i></button>
+                                </form>
+                            </div>
+                        @endif
+                        @if (\App\ArticleScore::hasVoted($article))
                             <div class="col-auto ml-auto">
-                                <p>Tu voto:</p>
-                                <button id="star-1" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
-                                <button id="star-2" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
-                                <button id="star-3" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
-                                <button id="star-4" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
-                                <button id="star-5" class="custom-text transparent-btn"><i class="far fa-star"></i></button>
-                                <p id="vote-value" hidden>{{ (new \App\ArticleScore)->getVote($article) }}</p>
+                                <div class="row">
+                                    <p class="mr-5 ">Tu voto:</p>
+                                    <i class="far fa-star mx-2" id="star-1" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-2" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-3" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-4" style="font-size: 16px;"></i>
+                                    <i class="far fa-star mx-2" id="star-5" style="font-size: 16px;"></i>
+                                    <p id="vote-value" hidden>{{ (new \App\ArticleScore)->getVote($article) }}</p>
+                                </div>
                                 <script>
                                     for (let i = 1; i <= document.getElementById("vote-value").innerHTML; i++) {
-                                        let item = document.getElementById("star-" + i).firstChild;
+                                        let item = document.getElementById("star-" + i);
                                         item.classList.remove('far');
                                         item.classList.add('fas');
                                     }

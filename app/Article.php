@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Article extends Model {
 
@@ -17,7 +16,7 @@ class Article extends Model {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function tags(){
+    public function tags() {
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
@@ -34,17 +33,19 @@ class Article extends Model {
     }
 
     public static function getFeaturedArticles() {
-        /*
-         return Article::select('users.name')
-        ->addSelect(Article::where('user.id', 'articles.user_id')->count())
-        ->orderBy('cant', 'desc')->take(10);
-        return Article::withCount(['score as avg_score' => function($query) {
-            $query->select(DB::raw('coalesce(avg(vote),0)'));
-        }])->orderByDesc('avg_score')->get();*/
+        return Article::join('article_scores', 'article_scores.article_id', '=', 'articles.id')
+            ->groupBy('articles.id')
+            ->orderByRaw('AVG(article_scores.vote) DESC')
+            ->select('articles.*')
+            ->limit(5)
+            ->get();
+    }
 
-        return Article::orderBy('id', 'desc')->take(10)->get();
+    public function reports() {
+        return $this->hasMany(ArticlesReports::class);
+    }
 
-        //return Article::withCount('score')->orderBy('score_count', 'desc')->take(10)->get();
-
+    public function bookmarks() {
+        return $this->hasMany(SavedArticle::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
@@ -47,6 +48,28 @@ class User extends Authenticatable
     }
 
     public static function getFeaturedUsers() {
-        return User::withCount('articles')->orderBy('articles_count', 'desc')->take(10)->get();
+        return User::withCount('articles')->orderBy('articles_count', 'desc')->take(5)->get();
+    }
+
+    public function reports() {
+        return $this->hasMany(ArticlesReports::class);
+    }
+
+    public function bookmarks() {
+        return $this->hasMany(SavedArticle::class);
+    }
+
+    public function averageScore() {
+        $res = 0; $va = 0;
+        $articleScore = new ArticleScore();
+        foreach ($this->articles as $article) {
+            $sc = $articleScore->score($article);
+            if ($sc != 0) {
+                $res += $sc;
+                $va += 1;
+            }
+        }
+        if ($va == 0)  return 'n/s';
+        else return $res / $va;
     }
 }

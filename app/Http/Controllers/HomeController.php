@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
 
     public function welcome() {
-        $articles = Article::latest()->paginate(12);
+        $articles = Article::orderBy('updated_at', 'desc')->paginate(12);
         return view('articles.index', ['articles' => $articles]);
     }
 }

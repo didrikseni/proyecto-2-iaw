@@ -63,6 +63,13 @@
                                     {{ __(auth()->user()->name) }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-sm-right">
+                                    @if(auth()->user()->role == 'admin')
+                                        <form method="GET" action="/report/articles" id="config-account">
+                                            @csrf
+                                            <button class="btn card-link dropdown-item"> Revisar reportes </button>
+                                        </form>
+                                        <div class="dropdown-divider"></div>
+                                    @endif
                                     <form method="GET" action="/profile" id="config-account">
                                         @csrf
                                         <button class="btn card-link dropdown-item"> Editar perfil </button>
@@ -79,14 +86,14 @@
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ url('/login') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Login
+                                Ingresar
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link custom-text-navbar faster" href="{{ route('register') }}"
                                onmouseover="animateCSS(this, 'fadeIn')">
-                                Register
+                                Registrarse
                             </a>
                         </li>
                     @endauth
