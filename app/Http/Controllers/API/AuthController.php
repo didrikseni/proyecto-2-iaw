@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response([ 'user' => $user, 'access_token' => $accessToken]);
+        return response(json_encode(['userData' =>[ 'user' => $user, 'access_token' => $accessToken]]), 200);
     }
 
     public function login(Request $request) {
@@ -33,6 +33,6 @@ class AuthController extends Controller
         }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(json_encode(['userData' =>[ 'user' => auth()->user(), 'access_token' => $accessToken]]), 200);
     }
 }

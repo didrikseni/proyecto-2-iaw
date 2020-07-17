@@ -25,6 +25,7 @@ class ApiArticleController extends Controller
                 'tags' => $article->tags->pluck('name'),
                 'file' => $article->hasFile() ? $article->getFile->id : '',
                 'author' => $article->author->name,
+                'score' => (new \App\ArticleScore())->score($article)
             ];
         }
         return response(json_encode($response), 200);
@@ -72,6 +73,7 @@ class ApiArticleController extends Controller
             'tags' => $article->tags->pluck('name'),
             'file' => $article->hasFile() ? $article->getFile->id : '',
             'author' => $article->author->name,
+            'score' => (new \App\ArticleScore())->score($article)
         ]), 200);
     }
 
