@@ -11,9 +11,9 @@ class AuthController extends Controller
 {
     public function register(Request $request) {
         $validatedData = $request->validate([
-            'name' => 'required|max:55',
+            'name' => 'required|min:3|max:55',
             'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
         ]);
         $validatedData['password'] = bcrypt($request->password);
         $user = User::create($validatedData);
@@ -33,16 +33,16 @@ class AuthController extends Controller
         return response(json_encode(['userData' => ['user' => auth()->user(), 'access_token' => $accessToken]]), 200);
     }
 
-    public function logged_in(Request $request) {
+    public function logout(Request $request) {
+        $request->user()->token()->revoke();
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    public function isLoggedIn(Request $request) {
         if (Auth::guard('api')->check()) {
             return response()->json(['logged_in' => true], 200);
         } else {
             return response()->json(['logged_in' => false], 418);
         }
-    }
-
-    public function logout(Request $request) {
-        $request->user()->token()->revoke();
-        return response()->json(['message' => 'Successfully logged out']);
     }
 }
