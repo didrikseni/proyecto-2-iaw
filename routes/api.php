@@ -21,7 +21,7 @@ Route::post('/register', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 Route::get('/isLoggedIn', 'API\AuthController@isLoggedIn');
 
-Route::resource('/api_articles', 'API\ApiArticleController')->middleware('auth:api');
+Route::resource('/api_articles', 'API\ApiArticleController');
 Route::resource('/api_users', 'API\ApiUserController')->middleware('auth:api');
 Route::resource('/api_tags', 'API\ApiTagController')->middleware('auth:api');
 Route::resource('/api_files', 'API\ApiFileController')->middleware('auth:api');

@@ -12,6 +12,10 @@ use Illuminate\Validation\ValidationException;
 
 class ApiArticleController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api')->except('index' , 'show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +37,7 @@ class ApiArticleController extends Controller
                     'score' => (new \App\ArticleScore())->score($article),
                 ];
             }
-            return response(json_encode($this->paginateCollection($response, 15, null, 'https://portal-uns.herokuapp.com/api/api_articles')), 200);
+            return response(json_encode($this->paginateCollection($response)), 200);
         } catch (\Exception $exception) {
             return response("Server error", 500);
         }
@@ -165,15 +169,11 @@ class ApiArticleController extends Controller
         }
     }
 
-    public function paginateCollection($items, $perPage = 15, $page = null, $baseUrl = null , $options = [])
+    public function paginateCollection($items, $perPage = 15, $page = null , $options = [])
     {
         $page = $page ?: (\Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof \Illuminate\Support\Collection ? $items : \Illuminate\Support\Collection::make($items);
-        $pg = new \Illuminate\Pagination\LengthAwarePaginator(array_values($items->forPage($page, $perPage)->toArray()), $items->count(), $perPage, $page, $options);
-        if ($baseUrl) {
-            $pg->setPath($baseUrl);
-        }
-        return $pg;
+        return new \Illuminate\Pagination\LengthAwarePaginator(array_values($items->forPage($page, $perPage)->toArray()), $items->count(), $perPage, $page, $options);
     }
 
 }
