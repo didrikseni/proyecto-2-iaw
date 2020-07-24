@@ -28,6 +28,7 @@ class ApiArticleController extends Controller
             foreach ($articles as $article) {
                 $response[] = [
                     'id' => $article->id,
+                    'user_id' => $article->user_id,
                     'title' => $article->title,
                     'description' => $article->description,
                     'content' => $article->content,
@@ -53,7 +54,7 @@ class ApiArticleController extends Controller
         return response(json_encode([
             'title' => 'some title here, max 255 char.',
             'description' => 'description of the article, max 500 char.',
-            'content' => 'some content to display, images cant be uploaded from the api yet.',
+            'content' => "article's content",
             'tags' => 'optional, must be some valid tag in /api/api_tags.',
             'file' => 'optional, must be pdf.',
             'max_post_size' => '6MB per article.'
@@ -89,6 +90,8 @@ class ApiArticleController extends Controller
         try {
             $article = Article::where('id', $id)->first();
             return response(json_encode([
+                'id' => $article->id,
+                'user_id' => $article->user_id,
                 'title' => $article->title,
                 'description' => $article->description,
                 'content' => $article->content,
