@@ -31,9 +31,6 @@ class ApiArticleController extends Controller
                     'user_id' => $article->user_id,
                     'title' => $article->title,
                     'description' => $article->description,
-                    'content' => $article->content,
-                    'tags' => $article->tags->pluck('name'),
-                    'file' => $article->hasFile() ? $article->getFile->id : '',
                     'author' => $article->author->name,
                     'score' => (new \App\ArticleScore())->score($article),
                 ];

@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', 'API\APIHelperController@show');
 
 Route::post('/register', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
+Route::post('/logout', 'API\AuthController@logout')->middleware('auth:api');
 Route::get('/isLoggedIn', 'API\AuthController@isLoggedIn');
 
 Route::resource('/api_articles', 'API\ApiArticleController');
