@@ -6,7 +6,7 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
 
-    <script src='https://cdn.tiny.cloud/1/3yn19ck0mgv6qus3qkej8vrfp9x3q45am4ikvprcke9nzs7q/tinymce/5/tinymce.min.js'
+    <script src='https://cdn.tiny.cloud/1/3yk9ck0mgv652us3qkej8vrfp9bq45am4iksmrcke9n7i2r/tinymce/5/tinymce.min.js'
             referrerpolicy="origin"></script>
     <script>
         tinymce.init({
